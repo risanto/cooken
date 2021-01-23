@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './index.css';
+import { App } from './App'
 
-function Test() {
-  return <h4>This is just a test</h4>
+function ReactApp() {
+  return <App />
 }
 
-ReactDOM.render(<Test/>, document.getElementById('root'))
+ReactDOM.render(<ReactApp />, document.getElementById('root'))
