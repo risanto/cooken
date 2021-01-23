@@ -1,6 +1,13 @@
 import React from 'react'
-import { Home } from './Home'
+import Home from './views/Home'
+import { RecipeProvider } from './contexts/Recipe'
 
-export const App = () => {
-    return <Home/>
+const App = () => {
+    return (
+        <RecipeProvider>
+            <Home />
+        </RecipeProvider>
+    )
 }
+
+export default App
