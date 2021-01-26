@@ -1,0 +1,26 @@
+{
+  "name": "cooken",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/risanto/cooken.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/risanto/cooken/issues"
+  },
+  "homepage": "https://github.com/risanto/cooken#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

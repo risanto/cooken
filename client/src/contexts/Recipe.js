@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
 import axios from 'axios'
+import host from '../host'
 
 export const RecipeContext = createContext()
 
@@ -10,9 +11,9 @@ export const RecipeProvider = (props) => {
     const [randomRecipes, setRandomRecipes] = useState([], [])
 
     const getRandomRecipes = async () => {
-        const { data } = await axios.get('https://api.spoonacular.com/recipes/random?number=6&apiKey=d6303c32254c42c395dc107236387632')
+        const { data } = await axios.get(`${host}/recipes/random`)
 
-        return data.recipes
+        return data
     }
 
     const generateNewRandomRecipes = () => {

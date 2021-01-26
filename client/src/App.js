@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from './views/Home'
+import Home from './components/views/Home'
 import { RecipeProvider } from './contexts/Recipe'
 
 const App = () => {
