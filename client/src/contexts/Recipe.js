@@ -8,7 +8,7 @@ export const RecipeProvider = (props) => {
 
     // RANDOM RECIPES
     
-    const [randomRecipes, setRandomRecipes] = useState([], [])
+    const [randomRecipes, setRandomRecipes] = useState(null)
 
     const getRandomRecipes = async () => {
         const { data } = await axios.get(`${host}/recipes/random`)
