@@ -26,14 +26,14 @@ const Home = () => {
                 </div>
             </section>
 
-            {randomRecipes && (
+            {randomRecipes.length && (
                 <section>
                     <p className="text-center text-gray-500 mt-4">Some recipes to inspire you.</p>
                     <ImageCardList list={randomRecipes} />
                 </section>
             )}
 
-            {!randomRecipes && (
+            {!randomRecipes.length && (
                 <SkeletonImageCardList/>
             )}
 

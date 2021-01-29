@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from './components/views/Home'
+import Recipe from './components/views/Recipe'
 import { RecipeProvider } from './contexts/Recipe'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -8,7 +9,8 @@ const App = () => {
         <Router>
             <RecipeProvider>
                 <Switch>
-                    <Route path="/" component={Home}/>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/recipes/:id" exact component={Recipe}/>
                 </Switch>
             </RecipeProvider>
         </Router>
