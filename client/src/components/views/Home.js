@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import SearchBar from '../SearchBar'
 import { RecipeContext } from '../../contexts/Recipe'
-import ImageCard from '../ImageCard'
+import ImageCardList from '../ImageCardList'
+import SkeletonImageCardList from '../SkeletonImageCardList'
 
 const Home = () => {
     const { randomRecipes, generateNewRandomRecipes } = useContext(RecipeContext)
@@ -25,15 +26,24 @@ const Home = () => {
                 </div>
             </section>
 
-            <p className="text-center text-gray-500 mt-4">Some recipes to inspire you.</p>
+            {randomRecipes && (
+                <section>
+                    <p className="text-center text-gray-500 mt-4">Some recipes to inspire you.</p>
+                    <ImageCardList list={randomRecipes} />
+                </section>
+            )}
 
-            {
+            {!randomRecipes && (
+                <SkeletonImageCardList/>
+            )}
+
+            {/* {
                 randomRecipes && (
                     <section className="flex flex-wrap self-center mt-2 align-center justify-center sm-500:w-2/3">
                         {randomRecipes.map(recipe => <ImageCard key={recipe.image} imageSrc={recipe.image} text={recipe.title} />)}
                     </section>
                 )
-            }
+            } */}
 
             <section className="flex justify-center align-center mt-4">
                 <button className="flex align-center justify-center border-2 rounded-xl px-1 text-sm text-gray-500 hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>

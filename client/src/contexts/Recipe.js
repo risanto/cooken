@@ -22,7 +22,9 @@ export const RecipeProvider = (props) => {
     }
 
     useEffect(() => {
-        generateNewRandomRecipes()
+        // setTimeout(async() => {
+            generateNewRandomRecipes()
+        // }, 100000)
     }, [])
 
     return (

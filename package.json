@@ -22,5 +22,8 @@
   "homepage": "https://github.com/risanto/cooken#readme",
   "devDependencies": {
     "concurrently": "^5.3.0"
+  },
+  "dependencies": {
+    "react-loading-skeleton": "^2.1.1"
   }
 }
