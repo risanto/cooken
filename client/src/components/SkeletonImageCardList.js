@@ -14,7 +14,7 @@ const SkeletonImageCardList = () => {
           {Array(6)
             .fill()
             .map((item, index) => (
-                <div className="shadow transform hover:-translate-y-2 cursor-pointer hover:shadow-xl m-2 md:m-4 w-1/3 md:w-1/4 rounded-t-lg rounded-b-xl">
+                <div key={index} className="shadow transform hover:-translate-y-2 cursor-pointer hover:shadow-xl m-2 md:m-4 w-1/3 md:w-1/4 rounded-t-lg rounded-b-xl">
 
                 <div className="md:hidden">
                     <Skeleton height={100} />

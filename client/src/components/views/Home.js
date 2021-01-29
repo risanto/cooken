@@ -48,7 +48,7 @@ const Home = () => {
             <section className="flex justify-center align-center mt-4">
                 <button className="flex align-center justify-center border-2 rounded-xl px-1 text-sm text-gray-500 hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>
                     <p className="p-1">
-                        <img className="inline-block w-6" src="random-icon.png" />
+                        <img className="inline-block w-6" src="random-icon.png" alt="random-icon"/>
                         Show me other random recipes
                     </p>
                 </button>
