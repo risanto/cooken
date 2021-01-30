@@ -13,9 +13,9 @@ const Recipe = () => {
     }, [])
 
     return (
-        <div>
+        <>
             {recipe && (
-                <div>
+                <>
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat bg-pink-50 h-80"></div>
@@ -39,12 +39,10 @@ const Recipe = () => {
                             analyzedInstructions={recipe.analyzedInstructions}
                         />
                     </div>
-
-
-                </div>
+                </>
             )
             }
-        </div>
+        </>
     )
 }
 

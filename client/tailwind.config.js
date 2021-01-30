@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Source Sans Pro', 'ui-sans-serif', 'system-ui']
+      sans: ['Source Sans Pro', 'ui-sans-serif', 'system-ui'],
+      h1: ['Sora']
     },
     container: {
       center: true,
