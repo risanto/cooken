@@ -27,6 +27,14 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                     onClick={() => toggleShowIngredients(false)}
                 >Directions</h2>
             </div>
+            {extendedIngredients.map((ingredient, index) => {
+                return (
+                    <>
+                        <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt={ingredient.image} />
+                        <p>{ingredient.original}</p>
+                    </>
+                )
+            })}
         </section>
     )
 }
