@@ -27,14 +27,16 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                     onClick={() => toggleShowIngredients(false)}
                 >Directions</h2>
             </div>
-            {extendedIngredients.map((ingredient, index) => {
-                return (
-                    <>
-                        <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt={ingredient.image} />
-                        <p>{ingredient.original}</p>
-                    </>
-                )
-            })}
+            <div className="flex flex-col justify-center mt-5 align-center">
+                {showIngredients && extendedIngredients.map((ingredient, index) => {
+                    return (
+                        <div className="self-center w-1/2 mb-5">
+                            <img className="inline-block w-8 mr-3" src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt={ingredient.image} />
+                            <p className="self-center inline-block">{ingredient.original}</p>
+                        </div>
+                    )
+                })}
+            </div>
         </section>
     )
 }
