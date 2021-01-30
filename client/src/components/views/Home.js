@@ -8,27 +8,27 @@ const Home = () => {
     const { randomRecipes, generateNewRandomRecipes } = useContext(RecipeContext)
 
     return (
-        <div className="container flex flex-col justify-center align-center lg:px-32 lg:py-8 pb-8 mb-8">
-            <section className="md:hidden mt-8">
+        <div className="container flex flex-col justify-center pb-8 mb-8 align-center lg:px-32 lg:py-8">
+            <section className="mt-8 md:hidden">
                 <div className="flex justify-center align-center">
                     <img className="w-24 cursor-pointer" src="cooken-logo-2.png" alt="Cooken" />
                 </div>
-                <div className="flex justify-center align-center px-2 mt-4">
+                <div className="flex justify-center px-2 mt-4 align-center">
                     <SearchBar className="flex-grow" />
                 </div>
             </section>
-            <section className="hidden md:block mx-8 mt-4">
+            <section className="hidden mx-8 mt-4 md:block">
                 <div className="flex justify-between align-center">
                     <img className="w-24" src="cooken-logo-2.png" alt="Cooken" />
-                    <div className="flex justify-between align-center py-4">
+                    <div className="flex justify-between py-4 align-center">
                         <SearchBar className="" />
                     </div>
                 </div>
             </section>
-
+            
             {randomRecipes.length && (
                 <section>
-                    <p className="text-center text-gray-500 mt-4">Some recipes to inspire you.</p>
+                    <p className="mt-4 text-center text-gray-500">Some recipes to inspire you.</p>
                     <ImageCardList list={randomRecipes} />
                 </section>
             )}
@@ -37,16 +37,8 @@ const Home = () => {
                 <SkeletonImageCardList/>
             )}
 
-            {/* {
-                randomRecipes && (
-                    <section className="flex flex-wrap self-center mt-2 align-center justify-center sm-500:w-2/3">
-                        {randomRecipes.map(recipe => <ImageCard key={recipe.image} imageSrc={recipe.image} text={recipe.title} />)}
-                    </section>
-                )
-            } */}
-
-            <section className="flex justify-center align-center mt-4">
-                <button className="flex align-center justify-center border-2 rounded-xl px-1 text-sm text-gray-500 hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>
+            <section className="flex justify-center mt-4 align-center">
+                <button className="flex justify-center px-1 text-sm text-gray-500 border-2 rounded-xl align-center hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>
                     <p className="p-1">
                         <img className="inline-block w-6" src="random-icon.png" alt="random-icon"/>
                         Show me other random recipes
@@ -54,10 +46,10 @@ const Home = () => {
                 </button>
             </section>
 
-            <section className="flex flex-col md:flex-row justify-center align-center mt-3">
-                <p className="text-center text-sm py-4 px-4">Do you want to make a dish based on what's available on your fridge?</p>
+            <section className="flex flex-col justify-center mt-3 md:flex-row align-center">
+                <p className="px-4 py-4 text-sm text-center">Do you want to make a dish based on what's available on your fridge?</p>
 
-                <button className="border-2 rounded-xl py-2 px-4 mt-2 md:mt-0 text-sm border-red-300 text-red-500 self-center hover:bg-red-500 hover:text-white">
+                <button className="self-center px-4 py-2 mt-2 text-sm text-red-500 border-2 border-red-300 rounded-xl md:mt-0 bg-gradient-to-r hover:from-pink-600 hover:via-red-500 hover:to-red-600 hover:text-white">
                     Join / sign in
                 </button>
             </section>
