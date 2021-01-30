@@ -25,22 +25,20 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            
-            {randomRecipes.length && (
-                <section>
-                    <p className="mt-4 text-center text-gray-500">Some recipes to inspire you.</p>
-                    <ImageCardList list={randomRecipes} />
-                </section>
-            )}
 
             {!randomRecipes.length && (
-                <SkeletonImageCardList/>
+                <SkeletonImageCardList />
             )}
+
+            <section>
+                <p className="mt-4 text-center text-gray-500">Some recipes to inspire you.</p>
+                <ImageCardList list={randomRecipes} />
+            </section>
 
             <section className="flex justify-center mt-4 align-center">
                 <button className="flex justify-center px-1 text-sm text-gray-500 border-2 rounded-xl align-center hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>
                     <p className="p-1">
-                        <img className="inline-block w-6" src="random-icon.png" alt="random-icon"/>
+                        <img className="inline-block w-6" src="random-icon.png" alt="random-icon" />
                         Show me other random recipes
                     </p>
                 </button>

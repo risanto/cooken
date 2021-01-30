@@ -1,10 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ImageCard from './ImageCard'
-import { RecipeContext } from '../contexts/Recipe'
 
 const ImageCardList = ({ list }) => {
-    const { getRecipeById } = useContext(RecipeContext)
-
     return (
         <ul className="flex flex-wrap justify-center list-none">
             {list.map((item, index) => {
