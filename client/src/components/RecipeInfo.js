@@ -2,7 +2,7 @@ import React from 'react'
 
 const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, dairyFree }) => {
     return (
-        <section className="flex flex-wrap justify-center p-3 text-sm flexContainer w-13/16 align-center">
+        <section className="flex flex-wrap justify-center p-3 mt-2 text-sm flexContainer w-13/16 align-center">
             <span className="flex justify-center align-center">
                 <img src="../hourglass.png" className="inline-block w-4 mb-2 mr-2" />
                 <p className="inline-block mb-2 mr-3">{readyInMinutes} minutes </p>
