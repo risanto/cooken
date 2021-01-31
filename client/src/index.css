@@ -3,8 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .image-card:hover .image-card-text {
-    --tw-bg-opacity: 1;
-    background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
-    color: white;
-} */
+.image-card:hover .image-card-text {
+    @apply text-white from-red-600 via-red-500 to-pink-500;
+}
+
+.image-card:hover::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    /* Bottom is positioned to cover the area the hovered element is leaving */
+    bottom: -1em;
+
+    /* We need to place the pseudo-element under everything else. Without 
+       specifying the placement, it will sit on top of the parent element (our card)
+       and block the user from selecting text or clicking links */
+    z-index: -1;
+}
