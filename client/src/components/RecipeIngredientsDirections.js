@@ -61,7 +61,7 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
             </div>
 
             {/* Big screen */}
-            <div className="hidden lg:block vertical-mid-line">
+            <div className="hidden w-3/4 mx-auto my-0 lg:block vertical-mid-line">
                 <div className="flex justify-center">
                     {/* Ingredients / Directions */}
                     <h2
