@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { RecipeContext } from '../../contexts/Recipe'
 import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
+import Nav from '../Nav'
 
 const Recipe = () => {
     const { id } = useParams()
@@ -16,6 +17,8 @@ const Recipe = () => {
         <>
             {recipe && (
                 <>
+                    <Nav/>
+                    
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat bg-pink-50 h-80"></div>

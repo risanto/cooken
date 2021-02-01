@@ -37,7 +37,7 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                     {showIngredients && extendedIngredients.map((ingredient, index) => {
                         return (
                             <div key={index} className="grid self-center w-2/3 grid-cols-3 mb-5">
-                                <img className="inline-block h-12 col-span-1 mr-3 place-self-center" src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt={ingredient.image} />
+                                <img className="inline-block h-12 col-span-1 mr-3 place-self-center" src={ingredient.image ? `https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}` : 'ingredient-placeholder.png'} alt={ingredient.image || 'ingredient'} />
                                 <p className="self-center inline-block col-span-2">{ingredient.original}</p>
                             </div>
                         )
@@ -47,7 +47,7 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                         {/* Directions list */}
                         {!showIngredients && analyzedInstructions[0].steps.map((instruction, index) => {
                             return (
-                                <span key={index} className="grid grid-cols-10 mx-5 mb-2">
+                                <span key={index} className="grid grid-cols-10 mx-5 mb-4">
                                     <p className="inline-block col-span-1 mr-2 font-bold text-red-500">
                                         {instruction.number}.
                             </p>
@@ -73,7 +73,7 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                 </div>
 
                 <div className="grid grid-cols-2 mt-5">
-                    <div className="grid col-span-1">
+                    <div className="col-span-1">
                         {/* Ingredients list */}
                         {extendedIngredients.map((ingredient, index) => {
                             return (
@@ -85,11 +85,11 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                         })}
                     </div>
 
-                    <div className="grid col-span-1">
+                    <div className="col-span-1">
                         {/* Directions list */}
                         {analyzedInstructions[0].steps.map((instruction, index) => {
                             return (
-                                <span key={index} className="grid grid-cols-10 col-span-1 mx-10 mb-2">
+                                <span key={index} className="grid grid-cols-10 col-span-1 mx-10 mb-4">
                                     <p className="inline-block col-span-1 mr-2 font-bold text-red-500 justify-self-end ">
                                         {instruction.number}.
                             </p>
