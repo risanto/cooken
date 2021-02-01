@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.vertical-mid-line {
+    background: linear-gradient(#000, #000) no-repeat center/1px 100%;
+}
+
 .image-card:hover .image-card-text {
     @apply text-white from-red-600 via-red-500 to-pink-500;
 }

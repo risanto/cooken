@@ -11,7 +11,7 @@ const ImageCard = ({ imageSrc, text, linkTo }) => {
                 {/* <p className="block px-4 py-2 text-sm text-center text-white truncate rounded-b-xl bg-gradient-to-r from-red-600 via-red-500 to-pink-500 sm-500:py-1">{text}</p> */}
 
                 {/* VERSION 2 */}
-                <p className="block px-4 py-3 text-sm text-center text-gray-600 truncate image-card-text rounded-b-xl md:py-2 sm-500:py-1 bg-gradient-to-r">{text}</p>
+                <p className="block px-4 py-3 text-sm text-center text-gray-700 truncate image-card-text rounded-b-xl md:py-2 sm-500:py-1 bg-gradient-to-r">{text}</p>
             </li>
         </Link>
     )
