@@ -29,14 +29,20 @@ export const RecipeProvider = (props) => {
         setRecipe(data)
     }
 
-    useEffect(() => {
-        // setTimeout(async() => {
-        generateNewRandomRecipes()
-        // }, 100000)
-    }, [])
+    // SEARCH RECIPES
+
+    const searchRecipes = async (query) => {
+        try {
+            const { data } = await axios.get(`${host}/recipes/search?q=${query}`)
+            return data
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
-        <RecipeContext.Provider value={{ randomRecipes, setRandomRecipes, generateNewRandomRecipes, recipe, setRecipe, getRecipeById }}>
+        <RecipeContext.Provider value={{ randomRecipes, setRandomRecipes, generateNewRandomRecipes, recipe, setRecipe, getRecipeById, searchRecipes }}>
             {props.children}
         </RecipeContext.Provider>
     )

@@ -5,7 +5,7 @@ const SkeletonImageCardList = () => {
     return (
         <section>
         <div className="flex justify-center align-center">
-            <div className="w-1/3 mt-4">
+            <div className="w-2/3 mt-4 md:w-1/3">
                 <Skeleton/>
             </div>
         </div>

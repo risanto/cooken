@@ -21,7 +21,7 @@ const Recipe = () => {
                     
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
-                    }} className="bg-fixed bg-top bg-no-repeat bg-pink-50 h-80"></div>
+                    }} className="bg-fixed bg-top bg-no-repeat h-80"></div>
 
                     <h1 className="relative px-6 pt-1 pb-8 text-xl text-center text-white bottom-4 rounded-tl-xl bg-gradient-to-r from-red-600 via-red-500 to-pink-500">{recipe.title}</h1>
 

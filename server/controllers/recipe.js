@@ -11,19 +11,23 @@ class RecipeController {
             res.send(data.recipes)
 
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
 
     static async getSearch(req, res) {
+        const { q, itemsPerPage, page } = req.query
+
         try {
-            const link = `https://api.spoonacular.com/recipes/complexSearch?query=${req.query.q}&apiKey=${apiKey}`
+            const link = `https://api.spoonacular.com/recipes/complexSearch?query=${q}&apiKey=${apiKey}&number=${itemsPerPage ? itemsPerPage : 9}&offset=${page ? page : 0}`
             console.log('GET', link)
 
             const { data } = await axios.get(link);
-            res.send(data.results)
+            res.send(data)
 
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
@@ -37,6 +41,7 @@ class RecipeController {
             res.send(data)
 
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
@@ -50,6 +55,7 @@ class RecipeController {
             res.send(data)
 
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }

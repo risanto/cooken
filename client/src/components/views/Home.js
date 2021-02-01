@@ -1,10 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SearchBar from '../SearchBar'
 import { RecipeContext } from '../../contexts/Recipe'
 import ImageCardList from '../ImageCardList'
 import SkeletonImageCardList from '../SkeletonImageCardList'
 
 const Home = () => {
+    useEffect(() => {
+        generateNewRandomRecipes()
+    }, [])
+
     const { randomRecipes, generateNewRandomRecipes } = useContext(RecipeContext)
 
     return (
