@@ -31,9 +31,16 @@ export const RecipeProvider = (props) => {
 
     // SEARCH RECIPES
 
-    const searchRecipes = async (query) => {
+    const searchRecipes = async (query, itemsPerPage, page) => {
         try {
-            const { data } = await axios.get(`${host}/recipes/search?q=${query}`)
+            let link = `${host}/recipes/search?q=${query}`
+
+            if (itemsPerPage) link += '&itemsPerPage=' + itemsPerPage
+
+            if (page) link += `&page=` + page
+
+            const { data } = await axios.get(link)
+
             return data
 
         } catch (error) {
