@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { RecipeContext } from '../../contexts/Recipe'
 
 import ImageCardList from '../ImageCardList'
-import SearchBar from '../SearchBar'
+import Nav from '../Nav'
 
 const RecipeSearchResult = ({ location }) => {
     const q = new URLSearchParams(location.search).get('q')
@@ -25,18 +25,7 @@ const RecipeSearchResult = ({ location }) => {
 
     return (
         <div className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8">
-            <header className="flex flex-col mt-8 md:hidden">
-                <img className="self-center w-24 cursor-pointer" src="../cooken-logo-2.png" alt="Cooken" />
-                <SearchBar className="self-center mt-4" />
-            </header>
-            <header className="hidden mx-8 mt-4 md:block">
-                <div className="flex justify-between align-center">
-                    <img className="w-24" src="../cooken-logo-2.png" alt="Cooken" />
-                    <div className="flex justify-between py-4 align-center">
-                        <SearchBar />
-                    </div>
-                </div>
-            </header>
+            <Nav/>
 
             <section id="search-result">
                 <p className="mt-4 font-serif text-2xl font-bold text-center">{totalResults} recipes found.</p>
