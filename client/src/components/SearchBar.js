@@ -20,7 +20,7 @@ const SearchBar = ({ className, history }) => {
                 type="search"
                 placeholder="find something to cook..."
                 onChange={e => setSearchInput(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' ? redirect(`recipes/search?q=${searchInput}`) : ''}
+                onKeyDown={e => e.key === 'Enter' ? redirect(`/recipes/search?q=${searchInput}`) : ''}
             />
         </div>
     )

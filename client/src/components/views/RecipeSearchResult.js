@@ -10,7 +10,7 @@ const RecipeSearchResult = ({ location }) => {
     const { searchRecipes } = useContext(RecipeContext)
 
     const [recipes, setRecipes] = useState([])
-    const [totalResults, setTotalResults] = useState([])
+    const [totalResults, setTotalResults] = useState(0)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
 
@@ -19,11 +19,9 @@ const RecipeSearchResult = ({ location }) => {
             .then(({ results, totalResults }) => {
                 setRecipes(results)
                 setTotalResults(totalResults)
+                setTotalPages(Math.ceil(totalResults / results.length))
             })
-            .then(() => {
-                setTotalPages(Math.ceil(totalResults / recipes.length))
-            })
-    }, [page])
+    }, [page, q])
 
     return (
         <div className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8">
