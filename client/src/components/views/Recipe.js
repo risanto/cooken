@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { RecipeContext } from '../../contexts/Recipe'
 import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
-import Nav from '../Nav'
+import Nav from '../Nav2'
 
 const Recipe = () => {
     const { id } = useParams()

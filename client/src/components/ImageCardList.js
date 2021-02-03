@@ -2,18 +2,6 @@ import React from 'react'
 import ImageCard from './ImageCard'
 
 const ImageCardList = ({ list }) => {
-    if (list.length === 10) {
-        list.push({
-            image: "",
-            title: "",
-            invisible: true
-        }, {
-            image: "",
-            title: "",
-            invisible: true
-        })
-    }
-
     return (
         <ul className="flex flex-wrap justify-center mt-2 list-none">
             {list.map((item, index) => {

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
-import SearchBar from '../SearchBar'
 import { RecipeContext } from '../../contexts/Recipe'
+
+import Nav from '../Nav'
 import ImageCardList from '../ImageCardList'
 import SkeletonImageCardList from '../SkeletonImageCardList'
 
@@ -13,18 +14,7 @@ const Home = () => {
 
     return (
         <div className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8">
-            <section id="header" className="flex flex-col mt-8 md:hidden">
-                <img className="self-center w-24 cursor-pointer" src="cooken-logo-2.png" alt="Cooken" />
-                <SearchBar className="self-center mt-4" />
-            </section>
-            <section className="hidden mx-8 mt-4 md:block">
-                <div className="flex justify-between align-center">
-                    <img className="w-24" src="cooken-logo-2.png" alt="Cooken" />
-                    <div className="flex justify-between py-4 align-center">
-                        <SearchBar />
-                    </div>
-                </div>
-            </section>
+            <Nav/>
 
             {/* Random recipes */}
             
