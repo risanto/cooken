@@ -20,7 +20,7 @@ class RecipeController {
         const { q, itemsPerPage, page } = req.query
 
         try {
-            const link = `https://api.spoonacular.com/recipes/complexSearch?query=${q}&apiKey=${apiKey}&number=${itemsPerPage ? itemsPerPage : 9}&offset=${page ? page : 0}`
+            const link = `https://api.spoonacular.com/recipes/complexSearch?query=${q}&apiKey=${apiKey}&number=${itemsPerPage ? itemsPerPage : 10}&offset=${page ? page : 0}`
             console.log('GET', link)
 
             const { data } = await axios.get(link);
