@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { RecipeContext } from '../../contexts/Recipe'
+
 import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
 import Nav from '../Nav2'
+import SkeletonRecipe from '../SkeletonRecipe'
 
 const Recipe = () => {
     const { id } = useParams()
@@ -15,10 +17,10 @@ const Recipe = () => {
 
     return (
         <>
+            <Nav />
+            {!recipe && <SkeletonRecipe/>}
             {recipe && (
                 <>
-                    <Nav/>
-                    
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat h-80"></div>
@@ -27,7 +29,7 @@ const Recipe = () => {
 
                     <div className="relative pb-8 pl-6 text-xl bg-white bottom-11 rounded-tl-xl">
                     </div>
-                    
+
                     <div className="relative bottom-20">
                         <RecipeInfo
                             readyInMinutes={recipe.readyInMinutes}
@@ -43,8 +45,7 @@ const Recipe = () => {
                         />
                     </div>
                 </>
-            )
-            }
+            )}
         </>
     )
 }

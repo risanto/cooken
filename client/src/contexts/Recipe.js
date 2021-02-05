@@ -26,8 +26,8 @@ export const RecipeProvider = (props) => {
     const [recipe, setRecipe] = useState(null)
 
     const getRecipeById = async (id) => {
+        setRecipe(null)
         const { data } = await axios.get(`${host}/recipes/${id}`)
-        // console.log(data)
         setRecipe(data)
     }
 
