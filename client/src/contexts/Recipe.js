@@ -16,6 +16,7 @@ export const RecipeProvider = (props) => {
     }
 
     const generateNewRandomRecipes = () => {
+        setRandomRecipes([])
         getRandomRecipes()
             .then(randomRecipes => setRandomRecipes(randomRecipes))
     }
@@ -26,6 +27,7 @@ export const RecipeProvider = (props) => {
 
     const getRecipeById = async (id) => {
         const { data } = await axios.get(`${host}/recipes/${id}`)
+        // console.log(data)
         setRecipe(data)
     }
 

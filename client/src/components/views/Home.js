@@ -11,6 +11,7 @@ const Home = () => {
     }, [])
 
     const { randomRecipes, generateNewRandomRecipes } = useContext(RecipeContext)
+    console.log(randomRecipes)
 
     return (
         <div className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8">
