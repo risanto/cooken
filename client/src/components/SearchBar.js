@@ -18,7 +18,7 @@ const SearchBar = (props) => {
                 </button>
             </span>
             <input
-                className={"py-2 pl-8 text-center text-sm italic border-solid border border-gray-500 rounded-lg w-full"}
+                className={"focus:outline-none py-2 pl-8 text-center text-sm italic border-solid border border-gray-500 rounded-lg w-full"}
                 type="search"
                 placeholder="find something to cook..."
                 onChange={e => setSearchInput(e.target.value)}

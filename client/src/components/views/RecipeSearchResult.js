@@ -48,7 +48,7 @@ const RecipeSearchResult = (props) => {
             {/* PAGINATION */}
             <div className="flex items-center justify-center px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
 
-                <button className={"relative inline-flex items-center px-2 py-2 rounded-l-xl border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 " + (page === 1 && "invisible")}
+                <button className={"focus:outline-none relative inline-flex items-center px-2 py-2 rounded-l-xl border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 " + (page === 1 && "invisible")}
                     onClick={() => redirect(`/recipes/search/${page - 1}?q=${q}`)}
                 >
                     <span className="sr-only">Previous</span>
@@ -61,7 +61,7 @@ const RecipeSearchResult = (props) => {
                     Page {page} of {totalPages}
                 </p>
 
-                <button className={"relative inline-flex items-center px-2 py-2 rounded-r-xl border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 " + (page === totalPages && "invisible")}
+                <button className={"focus:outline-none relative inline-flex items-center px-2 py-2 rounded-r-xl border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 " + (page === totalPages && "invisible")}
                     onClick={() => redirect(`/recipes/search/${page + 1}?q=${q}`)}
                 >
                     <span className="sr-only">Next</span>
