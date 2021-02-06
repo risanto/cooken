@@ -56,7 +56,7 @@ class RecipeController {
         }
     }
 
-    static async autocompleteIngredient(req, res, next) {
+    static async getAutocompleteIngredient(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=${apiKey}&query=${req.query.q}`
             console.log('GET', link)
