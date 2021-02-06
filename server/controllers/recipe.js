@@ -2,7 +2,7 @@ const axios = require('axios')
 const apiKey = process.env.API_KEY
 
 class RecipeController {
-    static async getRandom(req, res) {
+    static async getRandom(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=${req.query.number ? req.query.number : 6}`
             console.log('GET', link)
@@ -11,12 +11,11 @@ class RecipeController {
             res.send(data.recipes)
 
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            next(error)
         }
     }
 
-    static async getSearch(req, res) {
+    static async getSearch(req, res, next) {
         const { q, itemsPerPage, page } = req.query
 
         try {
@@ -27,12 +26,11 @@ class RecipeController {
             res.send(data)
 
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            next(error)
         }
     }
 
-    static async getFindByIngredients(req, res) {
+    static async getFindByIngredients(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${req.query.q}&apiKey=${apiKey}`
             console.log('GET', link)
@@ -41,12 +39,11 @@ class RecipeController {
             res.send(data)
 
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            next(error)
         }
     }
 
-    static async getFindById(req, res) {
+    static async getFindById(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apiKey}`
             console.log('GET', link)
@@ -55,8 +52,20 @@ class RecipeController {
             res.send(data)
 
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            next(error)
+        }
+    }
+
+    static async autocompleteIngredient(req, res, next) {
+        try {
+            const link = `https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=${apiKey}&query=${req.query.q}`
+            console.log('GET', link)
+
+            const { data } = await axios.get(link);
+            res.send(data)
+
+        } catch (error) {
+            next(error)
         }
     }
 }

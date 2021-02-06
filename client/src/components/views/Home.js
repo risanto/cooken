@@ -14,7 +14,9 @@ const Home = () => {
     console.log(randomRecipes)
 
     return (
-        <div className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8">
+        <div 
+            className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8"
+            >
             <Nav/>
 
             {/* Random recipes */}
