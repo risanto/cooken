@@ -1,8 +1,18 @@
-const axios = require('axios')
+const { User } = require('../models')
 
 class RecipeController {
     static async register(req, res, next) {
         try {
+            const {
+                username, displayName, email, password
+            } = req.body
+
+            const user = await User.create({
+                username, displayName, email, passwordHash: password
+            })
+
+            res.send(user)
+            
 
         } catch (error) {
             next(error)
