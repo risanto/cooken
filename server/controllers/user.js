@@ -1,4 +1,5 @@
 const { User } = require('../models')
+const { generateAccessToken } = require('../helpers/jwt')
 
 class UserController {
     static async register(req, res, next) {
@@ -7,14 +8,17 @@ class UserController {
                 displayName, email, password
             } = req.body
 
-            // TODO: validate email => should be unique
+            // TODO: validate email => should be unique, work on model validations
 
-            const user = await User.create({
+            let user = await User.create({
                 displayName, email, passwordHash: password
             })
 
-            res.status(200).send(user)
-            
+            user = { id: user.id, name: user.displayName, email: user.email }
+
+            res.status(200).json({
+                accessToken: generateAccessToken(user)
+            })
 
         } catch (error) {
             next(error)
@@ -39,8 +43,9 @@ class UserController {
 
     static async findById(req, res, next) {
         try {
+            
 
-        } catch (error) {
+        } catch (next) {
             next(error)
         }
     }
