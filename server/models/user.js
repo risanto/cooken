@@ -1,9 +1,9 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+
+const { Model } = require('sequelize')
 
 const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -17,20 +17,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    username: DataTypes.STRING,
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     passwordHash: DataTypes.STRING,
-    passwordSalt: DataTypes.STRING,
     ingredientsStr: DataTypes.STRING,
     externalType: DataTypes.STRING,
     externalId: DataTypes.STRING
   }, {
     hooks: {
-      beforeCreate: (user) => {
-        const salt = bcrypt.genSaltSync()
-        user.passwordHash = bcrypt.hashSync(user.passwordHash, salt)
-        user.passwordSalt = salt
+      beforeCreate: async (user) => {
+        try {
+          user.passwordHash = await bcrypt.hash(user.passwordHash, saltRounds)
+
+        } catch (error) {
+          throw error
+        }
       }
     },
     sequelize,

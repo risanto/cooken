@@ -1,17 +1,19 @@
 const { User } = require('../models')
 
-class RecipeController {
+class UserController {
     static async register(req, res, next) {
         try {
             const {
-                username, displayName, email, password
+                displayName, email, password
             } = req.body
 
+            // TODO: validate email => should be unique
+
             const user = await User.create({
-                username, displayName, email, passwordHash: password
+                displayName, email, passwordHash: password
             })
 
-            res.send(user)
+            res.status(200).send(user)
             
 
         } catch (error) {
@@ -84,4 +86,4 @@ class RecipeController {
     }
 }
 
-module.exports = RecipeController
+module.exports = UserController
