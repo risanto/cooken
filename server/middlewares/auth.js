@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
 
     } catch (error) {
         console.log(error)
-        if (error) res.sendStatus(403)
+        if (error) return res.sendStatus(403)
     }
 }
 

@@ -104,6 +104,15 @@ class UserController {
 
     static async delete(req, res, next) {
         try {
+            const user = await User.destroy({
+                where: {
+                    id: req.user.id
+                }
+            })
+
+            if (!user) throw new ErrorHandler(404, 'User not found.')
+
+            if (user) return res.sendStatus(200)
 
         } catch (error) {
             next(error)
