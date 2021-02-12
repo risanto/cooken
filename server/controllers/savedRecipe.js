@@ -8,8 +8,17 @@ class SavedRecipeController {
                 recipeId, imageSrc, title
             } = req.query
 
+            let previousSavedRecipe = await SavedRecipe.findOne({
+                where: {
+                    recipeId: +recipeId,
+                    userId: +req.user.id
+                }
+            })
+
+            if (previousSavedRecipe) throw new ErrorHandler(409, 'You already saved this recipe.')
+
             let savedRecipe = await SavedRecipe.create({
-                recipeId, imageSrc, title, userId: req.user.id 
+                recipeId, imageSrc, title, userId: +req.user.id
             })
 
             return res.status(200).json(savedRecipe)
@@ -23,7 +32,7 @@ class SavedRecipeController {
         try {
             let savedRecipes = await SavedRecipe.findAll({
                 where: {
-                    userId: req.user.id
+                    userId: +req.user.id
                 }
             })
 
@@ -37,68 +46,18 @@ class SavedRecipeController {
         }
     }
 
-    static async update(req, res, next) {
-        try {
-            let updates = {}
-
-            const {
-                displayName, email, password
-            } = req.body
-
-            if (displayName) updates.displayName = displayName
-            if (email) updates.email = email
-            if (password) updates.passwordHash = password
-
-            const user = await User.update(updates, {
-                where: {
-                    id: req.user.id
-                },
-                individualHooks: true
-            })
-
-            if (!user) throw new ErrorHandler(404, 'User not found.')
-
-            if (user[0]) return res.sendStatus(200)
-            else {
-                throw new ErrorHandler(400, 'No fields to update.')
-            }
-
-        } catch (error) {
-            next(error)
-        }
-    }
-
     static async delete(req, res, next) {
         try {
-            const user = await User.destroy({
+            const savedRecipe = await SavedRecipe.destroy({
                 where: {
-                    id: req.user.id
+                    id: +req.params.id,
+                    userId: +req.user.id
                 }
             })
 
-            if (!user) throw new ErrorHandler(404, 'User not found.')
+            if (!savedRecipe) throw new ErrorHandler(404, 'Recipe not found among your saved recipes.')
 
-            if (user) return res.sendStatus(200)
-
-        } catch (error) {
-            next(error)
-        }
-    }
-
-    static async updateIngredients(req, res, next) {
-        try {
-            const user = await User.update({ ingredientsStr: req.query.ingredientsStr }, {
-                where: {
-                    id: req.user.id
-                }
-            })
-
-            if (!user) throw new ErrorHandler(404, 'User not found.')
-
-            if (user[0]) return res.sendStatus(200)
-            else {
-                throw new ErrorHandler(400, 'Please input query ingredientsStr')
-            }
+            if (savedRecipe) return res.sendStatus(200)
 
         } catch (error) {
             next(error)
