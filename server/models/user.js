@@ -16,14 +16,50 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.SavedRecipe, { as: 'userId' })
     }
   };
-  User.init({
-    displayName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    passwordHash: DataTypes.STRING,
-    ingredientsStr: DataTypes.STRING,
-    externalType: DataTypes.STRING,
-    externalId: DataTypes.STRING
-  }, {
+  User.init(
+    {
+      displayName: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Display name cannot be empty."
+          }
+        }
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: {
+          args: true,
+          msg: "Email address is already in use."
+        },
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Email cannot be empty."
+          },
+          isEmail: {
+            msg: "Invalid email format."
+          }
+        }
+      },
+      passwordHash: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Password cannot be empty."
+          },
+          len: {
+            args: [8],
+            msg: "Password must be at least 8 characters long."
+          }
+        }
+      },
+      ingredientsStr: DataTypes.STRING,
+      externalType: DataTypes.STRING,
+      externalId: DataTypes.STRING
+    }, {
     hooks: {
       beforeCreate: async (user) => {
         try {
