@@ -6,7 +6,6 @@ const auth = async (req, res, next) => {
         const token = authHeader && authHeader.split(' ')[1]
 
         if (!token) return res.sendStatus(401)
-
         req.user = await verifyAccessToken(token)
         next()
 

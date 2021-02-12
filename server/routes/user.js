@@ -13,7 +13,8 @@ router.use(auth)
 router.patch('/ingredients', UserController.updateIngredients)
 router.get('/', UserController.findById)
 
-router.use(protectUserCooken)
+//protect dummy account from being updated or deleted
+router.use(protectUserCooken) 
 
 router.patch('/', UserController.update)
 router.delete('/', UserController.delete)
