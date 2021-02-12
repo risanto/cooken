@@ -1,6 +1,6 @@
 const { verifyAccessToken } = require('../helpers/jwt')
 
-const authenticate = async (req, res, next) => {
+const auth = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization']
         const token = authHeader && authHeader.split(' ')[1]
@@ -16,4 +16,4 @@ const authenticate = async (req, res, next) => {
     }
 }
 
-module.exports = authenticate
+module.exports = auth

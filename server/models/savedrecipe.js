@@ -14,7 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   SavedRecipe.init({
-    userId: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {  // SavedRecipe belongsTo User
+        model: 'Users',
+        key: 'id'
+      }
+    },
     recipeId: DataTypes.INTEGER,
     imageSrc: DataTypes.STRING,
     title: DataTypes.STRING

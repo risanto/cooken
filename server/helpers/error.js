@@ -7,11 +7,11 @@ class ErrorHandler extends Error {
 }
 
 const handleError = (err, res) => {
-    console.log('At handleError =>', err)
-    const { statusCode, message, errors } = err
+    console.log('At handleError =>', err.message)
+    let { statusCode, message, errors } = err
 
     if(!statusCode) statusCode = 500
-    let messages = message ? [message] : []
+    let messages = []
 
     errors?.forEach(error => {
         if (error.type === 'Validation error'
@@ -21,6 +21,8 @@ const handleError = (err, res) => {
             messages.push(error.message)
         }
     })
+
+    if (!messages.length) messages.push(message)
 
     res.status(statusCode).json({
         status: "error",

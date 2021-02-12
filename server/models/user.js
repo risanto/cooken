@@ -66,6 +66,14 @@ module.exports = (sequelize, DataTypes) => {
         } catch (error) {
           throw error
         }
+      },
+      beforeUpdate: async (user) => {
+        try {
+          user.passwordHash = await hashPassword(user.passwordHash)
+
+        } catch (error) {
+          throw error
+        }
       }
     },
     sequelize,
