@@ -8,18 +8,15 @@ class ErrorHandler extends Error {
 
 const handleError = (err, res) => {
     console.log('At handleError =>', err)
-    const { errors } = err
+    const { statusCode, message, errors } = err
 
-    let statusCode = 500
-    let messages = []
+    if(!statusCode) statusCode = 500
+    let messages = message ? [message] : []
 
-    errors.forEach(error => {
-        if (error.type === 'Validation error') {
-            statusCode = 400
-            messages.push(error.message)
-        }
-
-        if (error.type === 'unique violation') {
+    errors?.forEach(error => {
+        if (error.type === 'Validation error'
+            || error.type === 'unique violation'
+        ) {
             statusCode = 400
             messages.push(error.message)
         }

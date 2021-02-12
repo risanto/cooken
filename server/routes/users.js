@@ -3,7 +3,7 @@ const UserController = require('../controllers/user')
 const authenticate = require('../middlewares/authenticate')
 
 // PUBLIC
-router.get('/login', UserController.login)
+router.post('/login', UserController.login)
 router.post('/register', UserController.register)
 
 // PRIVATE

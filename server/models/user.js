@@ -1,9 +1,7 @@
 'use strict'
 
 const { Model } = require('sequelize')
-
-const bcrypt = require('bcrypt')
-const saltRounds = 10
+const { hashPassword } = require('../helpers/bcrypt')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -63,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     hooks: {
       beforeCreate: async (user) => {
         try {
-          user.passwordHash = await bcrypt.hash(user.passwordHash, saltRounds)
+          user.passwordHash = await hashPassword(user.passwordHash)
 
         } catch (error) {
           throw error

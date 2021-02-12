@@ -1,5 +1,7 @@
 const { User } = require('../models')
+const { ErrorHandler } = require('../helpers/error')
 const { generateAccessToken } = require('../helpers/jwt')
+const { compareHash } = require('../helpers/bcrypt')
 
 class UserController {
     static async register(req, res, next) {
@@ -8,15 +10,13 @@ class UserController {
                 displayName, email, password
             } = req.body
 
-            // TODO: validate email => should be unique, work on model validations
-
             let user = await User.create({
                 displayName, email, passwordHash: password
             })
 
-            user = { id: user.id, name: user.displayName, email: user.email }
+            user = { id: user.id, name: user.displayName }
 
-            res.status(200).json({
+            return res.status(200).json({
                 accessToken: generateAccessToken(user)
             })
 
@@ -27,6 +27,28 @@ class UserController {
 
     static async login(req, res, next) {
         try {
+            const {
+                email, password
+            } = req.body
+
+            let user = await User.findOne({
+                where: { email: email }
+            })
+
+            const correctPassword = await compareHash(password, user.passwordHash)
+
+            if (
+                !user || !correctPassword
+            ) {
+                throw new ErrorHandler(400, 'Incorrect email/password.')
+            } else {
+                user = { id: user.id, name: user.displayName }
+    
+                return res.status(200).json({
+                    accessToken: generateAccessToken(user)
+                })
+            }
+
 
         } catch (error) {
             next(error)
@@ -43,7 +65,7 @@ class UserController {
 
     static async findById(req, res, next) {
         try {
-            
+
 
         } catch (next) {
             next(error)
