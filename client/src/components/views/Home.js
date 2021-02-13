@@ -5,7 +5,7 @@ import Nav from '../Nav'
 import ImageCardList from '../ImageCardList'
 import SkeletonImageCardList from '../SkeletonImageCardList'
 
-const Home = () => {
+const Home = (props) => {
     const { getRandomRecipes } = useContext(RecipeContext)
 
     const [randomRecipes, setRandomRecipes] = useState([])
@@ -16,18 +16,22 @@ const Home = () => {
             .then(randomRecipes => setRandomRecipes(randomRecipes))
     }, [getRandomRecipes])
 
+    const redirectTo = (link) => {
+        props.history.push(link)
+    }
+
     useEffect(() => {
         generateNewRandomRecipes()
     }, [generateNewRandomRecipes])
 
     return (
-        <div 
+        <div
             className="container flex flex-col justify-center pb-16 align-center lg:px-32 lg:pt-8"
-            >
-            <Nav/>
+        >
+            <Nav />
 
             {/* Random recipes */}
-            
+
             {!randomRecipes.length && (
                 <SkeletonImageCardList />
             )}
@@ -49,8 +53,11 @@ const Home = () => {
             <section className="flex flex-col self-center justify-center w-3/4 mt-3 md:w-full md:flex-row align-center">
                 <p className="px-4 py-4 text-base text-center">Do you want to make a dish based on what's available on your fridge?</p>
 
-                <button className="self-center px-4 py-2 text-sm text-red-500 border-2 border-red-300 focus:outline-none rounded-xl md:mt-0 bg-gradient-to-r hover:from-pink-600 hover:via-red-500 hover:to-red-600 hover:text-white">
-                    Join / sign in
+                <button
+                    onClick={() => redirectTo('/joinLogin')}
+                    className="self-center px-4 py-2 text-sm text-red-500 border-2 border-red-300 focus:outline-none rounded-xl md:mt-0 bg-gradient-to-r hover:from-pink-600 hover:via-red-500 hover:to-red-600 hover:text-white"
+                >
+                    Join / log in
                 </button>
             </section>
         </div>

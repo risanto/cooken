@@ -1,6 +1,7 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false, // or 'media' or 'class',
+  important: true,
   theme: {
     fontFamily: {
       'serif': ['Libre Baskerville', 'ui-serif', 'Georgia'],
@@ -15,7 +16,20 @@ module.exports = {
       xl: '1.25rem',
       '2xl': '2.5rem'
     },
+    backgroundColor: theme => ({
+      ...theme('colors'),
+      'indigo-10': '#fafaff'
+    }),
+    backgroundSize: {
+      'auto': 'auto',
+      'cover': 'cover',
+      'contain': 'contain',
+      '30%': '30%',
+      '50%': '50%',
+      '16': '4rem',
+    },
     screens: {
+      'below-sm-500': { 'max': '499px' },
       'sm-500': '500px',
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
