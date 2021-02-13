@@ -8,7 +8,7 @@
 }
 
 .image-card:hover .image-card-text {
-    @apply text-white from-red-600 via-red-500 to-pink-500;
+    @apply text-white from-red-600 via-red-500 to-pink-500 !important;
 }
 
 .image-card:hover::after {

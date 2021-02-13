@@ -42,7 +42,7 @@ const Home = (props) => {
             </section>
 
             <section className="flex justify-center mt-4 align-center">
-                <button className="flex justify-center px-1 text-sm text-gray-500 border-2 focus:outline-none rounded-xl align-center hover:text-gray-600 hover:border-gray-400" onClick={generateNewRandomRecipes}>
+                <button className="flex justify-center px-1 text-sm text-gray-500 border-2 focus:outline-none rounded-xl align-center hover:text-indigo-700 hover:border-indigo-200" onClick={generateNewRandomRecipes}>
                     <p className="p-1">
                         <img className="inline-block w-6" src="random-icon.png" alt="random-icon" />
                         Show me other random recipes
