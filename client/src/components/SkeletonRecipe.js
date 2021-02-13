@@ -19,7 +19,7 @@ const SkeletonRecipe = () => {
                 <div className="w-2/3 mt-5 place-self-center">
                     <div className="col-span-1 m-5">
                         {Array(15).fill().map((item, index) => {
-                            return <Skeleton height={25} />
+                            return <Skeleton key={index} height={25} />
                         })}
                     </div>
                 </div>

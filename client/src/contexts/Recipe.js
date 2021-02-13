@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { createContext } from 'react'
 import axios from 'axios'
 import host from '../host'
 
@@ -8,27 +8,27 @@ export const RecipeProvider = (props) => {
 
     // RANDOM RECIPES
 
-    const [randomRecipes, setRandomRecipes] = useState([])
-
     const getRandomRecipes = async () => {
-        const { data } = await axios.get(`${host}/recipes/random`)
-        return data
+        try {
+            const { data } = await axios.get(`${host}/recipes/random`)
+            return data
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const generateNewRandomRecipes = () => {
-        setRandomRecipes([])
-        getRandomRecipes()
-            .then(randomRecipes => setRandomRecipes(randomRecipes))
-    }
 
     // RECIPES BY ID
 
-    const [recipe, setRecipe] = useState(null)
-
     const getRecipeById = async (id) => {
-        setRecipe(null)
-        const { data } = await axios.get(`${host}/recipes/${id}`)
-        setRecipe(data)
+        try {
+            const { data } = await axios.get(`${host}/recipes/${id}`)
+            return data
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // SEARCH RECIPES
@@ -51,7 +51,7 @@ export const RecipeProvider = (props) => {
     }
 
     return (
-        <RecipeContext.Provider value={{ randomRecipes, setRandomRecipes, generateNewRandomRecipes, recipe, setRecipe, getRecipeById, searchRecipes }}>
+        <RecipeContext.Provider value={{ getRandomRecipes, getRecipeById, searchRecipes }}>
             {props.children}
         </RecipeContext.Provider>
     )

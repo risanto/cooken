@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { RecipeContext } from '../../contexts/Recipe'
 
 import Nav from '../Nav'
@@ -6,12 +6,19 @@ import ImageCardList from '../ImageCardList'
 import SkeletonImageCardList from '../SkeletonImageCardList'
 
 const Home = () => {
+    const { getRandomRecipes } = useContext(RecipeContext)
+
+    const [randomRecipes, setRandomRecipes] = useState([])
+
+    const generateNewRandomRecipes = useCallback(() => {
+        setRandomRecipes([])
+        getRandomRecipes()
+            .then(randomRecipes => setRandomRecipes(randomRecipes))
+    }, [getRandomRecipes])
+
     useEffect(() => {
         generateNewRandomRecipes()
-    }, [])
-
-    const { randomRecipes, generateNewRandomRecipes } = useContext(RecipeContext)
-    console.log(randomRecipes)
+    }, [generateNewRandomRecipes])
 
     return (
         <div 

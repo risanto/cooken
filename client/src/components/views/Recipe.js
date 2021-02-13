@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { RecipeContext } from '../../contexts/Recipe'
 
@@ -9,11 +9,14 @@ import SkeletonRecipe from '../SkeletonRecipe'
 
 const Recipe = () => {
     const { id } = useParams()
-    const { recipe, getRecipeById } = useContext(RecipeContext)
+
+    const [recipe, setRecipe] = useState(null)
+    const { getRecipeById } = useContext(RecipeContext)
 
     useEffect(() => {
         getRecipeById(id)
-    }, [])
+            .then(recipeData => setRecipe(recipeData))
+    }, [getRecipeById, id])
 
     return (
         <>
