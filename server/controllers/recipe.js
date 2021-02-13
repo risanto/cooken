@@ -15,7 +15,7 @@ class RecipeController {
         }
     }
 
-    static async getSearch(req, res, next) {
+    static async search(req, res, next) {
         const { q, itemsPerPage, page } = req.query
 
         try {
@@ -30,7 +30,7 @@ class RecipeController {
         }
     }
 
-    static async getFindByIngredients(req, res, next) {
+    static async findByIngredients(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${req.query.q}&apiKey=${apiKey}`
             console.log('GET', link)
@@ -43,7 +43,7 @@ class RecipeController {
         }
     }
 
-    static async getFindById(req, res, next) {
+    static async findById(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apiKey}`
             console.log('GET', link)
@@ -56,7 +56,7 @@ class RecipeController {
         }
     }
 
-    static async getAutocompleteIngredient(req, res, next) {
+    static async autocompleteIngredient(req, res, next) {
         try {
             const link = `https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=${apiKey}&query=${req.query.q}`
             console.log('GET', link)
