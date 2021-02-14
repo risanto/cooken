@@ -65,10 +65,10 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
                 <div className="flex justify-center">
                     {/* Ingredients / Directions */}
                     <h2
-                        className="inline-block px-10 py-1 text-base text-center text-red-500 bg-pink-50"
+                        className="inline-block px-10 py-1 text-base text-center text-red-500 bg-pink-10"
                     >Ingredients</h2>
                     <h2
-                        className="inline-block px-10 py-1 text-base text-center text-purple-500 bg-purple-50"
+                        className="inline-block px-10 py-1 text-base text-center text-purple-500 bg-indigo-10"
                     >Directions</h2>
                 </div>
 

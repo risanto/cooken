@@ -4,7 +4,7 @@ import { RecipeContext } from '../../contexts/Recipe'
 
 import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
-import Nav from '../Nav2'
+import Nav from '../Nav'
 import SkeletonRecipe from '../SkeletonRecipe'
 
 const Recipe = () => {
@@ -20,7 +20,7 @@ const Recipe = () => {
 
     return (
         <>
-            <Nav />
+            <Nav showLogo={true}/>
             {!recipe && <SkeletonRecipe/>}
             {recipe && (
                 <>

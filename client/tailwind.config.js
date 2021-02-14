@@ -18,7 +18,8 @@ module.exports = {
     },
     backgroundColor: theme => ({
       ...theme('colors'),
-      'indigo-10': '#fafaff'
+      'indigo-10': '#fafaff',
+      'pink-10': '#fffafa',
     }),
     backgroundSize: {
       'auto': 'auto',

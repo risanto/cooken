@@ -1,16 +1,19 @@
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
     require('dotenv').config()
 }
 
 const express = require('express')
-const app = express()
 const cors = require('cors')
+const bodyParser = require('body-parser')
+
+const app = express()
 const PORT = process.env.PORT
 const routes = require('./routes')
 
 const { handleError } = require('./helpers/error')
 
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use(routes)

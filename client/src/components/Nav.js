@@ -1,27 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SearchBar from './SearchBar'
 
-const Nav = () => {
+const Nav = (props) => {
     return (
-        <>
-            <header className="flex flex-col mt-8 md:hidden">
-                <Link to="/" className="cursor-pointer place-self-center">
-                    <img className="self-center w-24 cursor-pointer" src="/cooken-logo-2.png" alt="Cooken" />
+        <nav className="fixed sticky top-0 z-50 flex gap-2 p-2 bg-white cursor-pointer md:pl-4">
+            <img src="/hamburger-menu-red.png" className="w-10" alt="menu" />
+            {props.showLogo && (
+                <Link to="/" className="cursor-pointer">
+                    <img src="/cooken-logo.png" alt="cooken-logo" className="w-20"/>
                 </Link>
-                <SearchBar className="self-center mt-4" />
-            </header>
-            <header className="hidden mx-8 mt-4 md:block">
-                <div className="flex justify-between align-center">
-                    <Link to="/" className="cursor-pointer place-self-center">
-                        <img className="w-24" src="/cooken-logo-2.png" alt="Cooken" />
-                    </Link>
-                    <div className="flex justify-between py-4 align-center">
-                        <SearchBar />
-                    </div>
-                </div>
-            </header>
-        </>
+            )}
+        </nav>
     )
 }
 
