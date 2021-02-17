@@ -48,12 +48,30 @@ export const UserProvider = (props) => {
         }
     }
 
+    const register = async (registerEmail, registerPassword) => {
+        try {
+            const { data } = await axios({
+                method: 'post',
+                url: `${host}/user/register`,
+                data: {
+                    email: registerEmail,
+                    password: registerPassword
+                }
+            })
+            
+            localStorage.setItem('accessToken', data.accessToken)
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         authenticate()
     }, [])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register }}>
             {props.children}
         </UserContext.Provider>
     )

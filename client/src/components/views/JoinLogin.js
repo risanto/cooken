@@ -1,14 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../../contexts/User'
 import Nav from '../Nav'
+import AlertRed from '../AlertRed'
 
 const JoinLogin = (props) => {
-    const { login, isAuthenticated } = useContext(UserContext)
+    const { login, register, isAuthenticated } = useContext(UserContext)
 
     if (isAuthenticated) {
         props.history.push('/')
     }
-    
+
+    // ERROR MESSAGE
+    const [errorMessage, setErrorMessage] = useState('Error')
+    const [dismissAlert, setDismissAlert] = useState(false)
+
+
     // LOGIN
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
@@ -17,6 +23,20 @@ const JoinLogin = (props) => {
         setJoinActive(false)
         setLoginEmail('cooken@dummy.acc')
         setLoginPassword('cooken123')
+    }
+
+
+    // JOIN
+    const [joinName, setJoinName] = useState('')
+    const [joinEmail, setJoinEmail] = useState('')
+    const [joinPassword, setJoinPassword] = useState('')
+    const [joinPassword2, setJoinPassword2] = useState('')
+
+    const join = () => {
+        if (joinPassword !== joinPassword2) {
+            setDismissAlert(false)
+            setErrorMessage('Please enter the same password and confirm password.')
+        }
     }
 
 
@@ -41,7 +61,7 @@ const JoinLogin = (props) => {
             style={{ backgroundImage: "url('/chef-celebration.png')" }}
             className="h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative"
         >
-            <Nav showLogo={true}/>
+            <Nav showLogo={true} />
 
             <section className="relative flex flex-col w-full pb-10 bg-white sm-500:mt-5 sm-500:rounded-lg sm-500:shadow-md sm-500:w-2/3 lg:w-1/3 sm-500:mx-auto sm-500:top-16">
                 <div className="flex justify-around">
@@ -60,28 +80,51 @@ const JoinLogin = (props) => {
                     >Log in</h2>
                 </div>
 
+
                 {/* Join */}
                 <div className={(joinActive ? "" : "hidden ") + "flex flex-col px-10 pt-10"}>
                     <p className={"text-2xl text-center text-red-500"}>Welcome!</p>
                     <p className="mt-2 text-center xl:mx-16">We need a few details to create your account. After this, you'll be set up and ready to go.</p>
                     <div className="relative mt-8">
-                        <label htmlFor="email" className="leading-7 text-gray-700">Name</label>
-                        <input type="email" name="email" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
+                        <label htmlFor="name" className="leading-7 text-gray-700">Name</label>
+                        <input
+                            value={joinName}
+                            onChange={e => setJoinName(e.target.value)}
+                            type="name" name="name" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
                     </div>
                     <div className="relative mt-4">
                         <label htmlFor="email" className="leading-7 text-gray-700">Email</label>
-                        <input type="email" name="email" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
+                        <input
+                            value={joinEmail}
+                            onChange={e => setJoinEmail(e.target.value)}
+                            type="email" name="email" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
                     </div>
                     <div className="relative mt-4">
                         <label htmlFor="email" className="leading-7 text-gray-700">Password</label>
-                        <input type="password" name="password" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
+                        <input
+                            value={joinPassword}
+                            onChange={e => setJoinPassword(e.target.value)}
+                            type="password" name="password" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
                     </div>
-                    <div className="relative mt-4">
+                    <div className="relative mt-4 mb-4">
                         <label htmlFor="email" className="leading-7 text-gray-700">Confirm password</label>
-                        <input type="password" name="password" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
+                        <input
+                            value={joinPassword2}
+                            onChange={e => setJoinPassword2(e.target.value)}
+                            type="password" name="password" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
                     </div>
 
-                    <button className="px-6 py-2 mt-10 text-lg text-white bg-red-600 border-0 focus:outline-none bg-gradient-to-r from-pink-600 hover:from-pink-500 via-red-500 hover:via-red-400 to-red-600 hover:to-red-500 rounded-xl">Create account</button>
+                    {errorMessage && (
+                        <AlertRed
+                            dismissAlert={dismissAlert}
+                            setDismissAlert={setDismissAlert}
+                            message={errorMessage}
+                        />
+                    )}
+
+                    <button
+                        onClick={join}
+                        className="px-6 py-2 mt-4 text-lg text-white bg-red-600 border-0 focus:outline-none bg-gradient-to-r from-pink-600 hover:from-pink-500 via-red-500 hover:via-red-400 to-red-600 hover:to-red-500 rounded-xl">Create account</button>
 
                     <p className="mt-4 text-center">Too lazy to make a new account? Just use <span
                         onClick={loginWithCookenAccount}
@@ -123,6 +166,7 @@ const JoinLogin = (props) => {
                         className="font-bold text-red-500 underline cursor-pointer"
                     >Cooken account</span> and get going.</p>
                 </div>
+
             </section>
 
         </div>
