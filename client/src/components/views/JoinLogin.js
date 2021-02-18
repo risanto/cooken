@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../contexts/User'
 import Nav from '../Nav'
-import AlertRed from '../AlertRed'
+import Alert from '../Alert'
 
 const JoinLogin = (props) => {
     const { login, register, isAuthenticated } = useContext(UserContext)
@@ -11,7 +11,7 @@ const JoinLogin = (props) => {
     }
 
     // ERROR MESSAGE
-    const [errorMessage, setErrorMessage] = useState('Error')
+    const [errorMessages, setErrorMessages] = useState([])
     const [dismissAlert, setDismissAlert] = useState(false)
 
 
@@ -35,7 +35,12 @@ const JoinLogin = (props) => {
     const join = () => {
         if (joinPassword !== joinPassword2) {
             setDismissAlert(false)
-            setErrorMessage('Please enter the same password and confirm password.')
+            
+            const message = 'Please enter the same password and confirm password.'
+
+            if (!errorMessages.includes(message)) {
+                setErrorMessages(errorMessages.concat(message))
+            }
         }
     }
 
@@ -52,6 +57,12 @@ const JoinLogin = (props) => {
         }
     }
 
+    useEffect(() => {
+        if (dismissAlert === true) {
+            setErrorMessages([])
+        }
+    }, [dismissAlert])
+
     const activeH2Classnames = "cursor-pointer flex-1 inline-block py-1 text-base text-center text-red-500 border-b-2 border-red-500 bg-pink-50"
 
     const inactiveH2Classnames = "cursor-pointer flex-1 inline-block py-1 text-base text-center text-gray-500 border-b-2 bg-gray-50"
@@ -59,7 +70,7 @@ const JoinLogin = (props) => {
     return (
         <div
             style={{ backgroundImage: "url('/chef-celebration.png')" }}
-            className="h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative"
+            className="overflow-scroll h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative"
         >
             <Nav showLogo={true} />
 
@@ -114,11 +125,12 @@ const JoinLogin = (props) => {
                             type="password" name="password" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" />
                     </div>
 
-                    {errorMessage && (
-                        <AlertRed
+                    {!!errorMessages.length && (
+                        <Alert
+                            classNames={"text-red-700 bg-red-100 border border-red-300"}
                             dismissAlert={dismissAlert}
                             setDismissAlert={setDismissAlert}
-                            message={errorMessage}
+                            messages={errorMessages}
                         />
                     )}
 
