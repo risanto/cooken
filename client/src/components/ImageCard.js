@@ -1,27 +1,40 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../contexts/User'
 
 const ImageCard = (props) => {
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
-    const { isAuthenticated, saveRecipe } = useContext(UserContext)
+    const { isAuthenticated, saveRecipe, savedRecipes, fetchSavedRecipes } = useContext(UserContext)
 
     const handleSaveRecipe = (e) => {
         e.stopPropagation()
         saveRecipe(recipeId, imageSrc, text)
+            .then(_ => fetchSavedRecipes())
     }
+
+    const [isSaved, setIsSaved] = useState(false)
+
+    useEffect(() => {
+        if (savedRecipes.find(el => el.recipeId === recipeId)) setIsSaved(true)
+    }, [savedRecipes])
 
     return (
         <div
-        onClick={() => props.history.push(linkTo)}
-        className={"inline-block w-3/4 m-2 transform rounded-t-lg shadow cursor-pointer no-flicker hover:-translate-y-2 hover:shadow-xl md:m-4 rounded-b-xl sm-500:w-2/5 md:w-1/4 image-card " + extraClasses}
+            onClick={() => props.history.push(linkTo)}
+            className={"inline-block w-3/4 m-2 transform rounded-t-lg shadow cursor-pointer no-flicker hover:-translate-y-2 hover:shadow-xl md:m-4 rounded-b-xl sm-500:w-2/5 md:w-1/4 image-card " + extraClasses}
         >
             <li className="">
-                {!!isAuthenticated && (
+                {isAuthenticated && !isSaved && (
                     <img
                         onClick={handleSaveRecipe}
                         className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
                         src="save-icon.svg"
+                    />
+                )}
+
+                {isAuthenticated && isSaved && (
+                    <img
+                        className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
+                        src="saved-icon.svg"
                     />
                 )}
 

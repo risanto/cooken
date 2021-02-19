@@ -22,7 +22,6 @@ export const UserProvider = (props) => {
                 headers: { 'Authorization': 'bearer ' + accessToken }
             })
 
-            console.log('save recipe', data)
             return data
 
         } catch (error) {
@@ -40,8 +39,8 @@ export const UserProvider = (props) => {
                 headers: { 'Authorization': 'bearer ' + accessToken }
             })
 
-            return data
-            
+            setSavedRecipes(data)
+
         } catch (error) {
             console.log(error)
         }        
