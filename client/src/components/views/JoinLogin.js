@@ -25,6 +25,15 @@ const JoinLogin = (props) => {
         setLoginPassword('cooken123')
     }
 
+    const handleLogin = () => {
+        login(loginEmail, loginPassword)
+            .then(_ => props.histoy.push('/'))
+            .catch(errMessages => {
+                setDismissAlert(false)
+                setErrorMessages(errMessages.slice(0, 1))
+            })
+    }
+
 
     // JOIN
     const [joinName, setJoinName] = useState('')
@@ -32,7 +41,7 @@ const JoinLogin = (props) => {
     const [joinPassword, setJoinPassword] = useState('')
     const [joinPassword2, setJoinPassword2] = useState('')
 
-    const join = () => {
+    const handleJoin = () => {
         if (joinPassword !== joinPassword2) {
             setDismissAlert(false)
             
@@ -59,6 +68,7 @@ const JoinLogin = (props) => {
 
     const toggleJoinActive = (boolean) => {
         setJoinActive(boolean)
+        setDismissAlert(true)
 
         if (boolean === true) {
             setLoginEmail('')
@@ -144,7 +154,7 @@ const JoinLogin = (props) => {
                     )}
 
                     <button
-                        onClick={join}
+                        onClick={handleJoin}
                         className="px-6 py-2 mt-4 text-lg text-white bg-red-600 border-0 focus:outline-none bg-gradient-to-r from-pink-600 hover:from-pink-500 via-red-500 hover:via-red-400 to-red-600 hover:to-red-500 rounded-xl">Create account</button>
 
                     <p className="mt-4 text-center">Too lazy to make a new account? Just use <span
@@ -168,7 +178,7 @@ const JoinLogin = (props) => {
                             type="email" name="email" className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
                         />
                     </div>
-                    <div className="relative mt-4">
+                    <div className="relative mt-4 mb-4">
                         <label htmlFor="email" className="leading-7 text-gray-700">Password</label>
                         <input
                             value={loginPassword}
@@ -177,9 +187,18 @@ const JoinLogin = (props) => {
                         />
                     </div>
 
+                    {!!errorMessages.length && (
+                        <Alert
+                            classNames={"text-red-700 bg-red-100 border border-red-300"}
+                            dismissAlert={dismissAlert}
+                            setDismissAlert={setDismissAlert}
+                            messages={errorMessages}
+                        />
+                    )}
+
                     <button
-                        onClick={() => login(loginEmail, loginPassword)}
-                        className="px-6 py-2 mt-10 text-lg text-white bg-red-600 border-0 focus:outline-none bg-gradient-to-r from-pink-600 hover:from-pink-500 via-red-500 hover:via-red-400 to-red-600 hover:to-red-500 rounded-xl"
+                        onClick={handleLogin}
+                        className="px-6 py-2 mt-4 text-lg text-white bg-red-600 border-0 focus:outline-none bg-gradient-to-r from-pink-600 hover:from-pink-500 via-red-500 hover:via-red-400 to-red-600 hover:to-red-500 rounded-xl"
                     >Log in</button>
 
                     <p className="mt-4 text-center">Don't have an account of your own? Just use <span

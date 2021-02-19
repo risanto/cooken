@@ -1,7 +1,6 @@
 const { User } = require('../models')
 const { ErrorHandler } = require('../helpers/error')
-const { generateAccessToken } = require('../helpers/jwt')
-const { compareHash } = require('../helpers/bcrypt')
+const { generateAccessToken, compareHash, validateEmail } = require('../helpers')
 
 class UserController {
     static async register(req, res, next) {
@@ -31,11 +30,27 @@ class UserController {
                 email, password
             } = req.body
 
+            if (!email || email.length < 1) {
+                throw new ErrorHandler(400, 'Please enter an email address.')
+            }
+
+            if (!validateEmail(email)) {
+                throw new ErrorHandler(400, 'Invalid email format.')
+            }
+
+            if (!password || password.length < 1) {
+                throw new ErrorHandler(400, 'Please enter a password.')
+            }
+
             let user = await User.findOne({
                 where: { email: email }
             })
 
-            const correctPassword = await compareHash(password, user.passwordHash)
+            let correctPassword
+
+            if (user) {
+                correctPassword = await compareHash(password, user?.passwordHash)
+            }
 
             if (!user || !correctPassword) {
                 throw new ErrorHandler(400, 'Incorrect email/password.')

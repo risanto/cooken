@@ -44,7 +44,7 @@ export const UserProvider = (props) => {
             localStorage.setItem('accessToken', data.accessToken)
 
         } catch (error) {
-            console.log(error)
+            throw error.response.data.messages
         }
     }
 
