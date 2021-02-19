@@ -7,7 +7,7 @@ const ImageCardList = ({ list }) => {
             {list.map((item, index) => {
                 return item.invisible
                     ? <ImageCard extraClasses={"invisible"} key={index} item={item} imageSrc={item.image} text={item.title} linkTo={`/recipes/${item.id}`} />
-                    : <ImageCard extraClasses={"place-self-center"} key={index} item={item} imageSrc={item.image} text={item.title} linkTo={`/recipes/${item.id}`} />
+                    : <ImageCard extraClasses={"place-self-center"} key={index} item={item} imageSrc={item.image} text={item.title} recipeId={item.id} linkTo={`/recipes/${item.id}`} />
             })}
         </ul>
     )

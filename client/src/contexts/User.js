@@ -8,6 +8,44 @@ export const UserProvider = (props) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [user, setUser] = useState({})
+    const [savedRecipes, setSavedRecipes] = useState([])
+
+    const saveRecipe = async (recipeId, imageSrc, title) => {
+        try {
+            const accessToken = localStorage.getItem('accessToken')
+
+            let query = `recipeId=${recipeId}&imageSrc=${imageSrc}&title=${title}`
+    
+            const { data } = await axios({
+                method: 'post',
+                url: `${host}/savedRecipes?${query}`,
+                headers: { 'Authorization': 'bearer ' + accessToken }
+            })
+
+            console.log('save recipe', data)
+            return data
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const fetchSavedRecipes = async () => {
+        try {
+            const accessToken = localStorage.getItem('accessToken')
+    
+            const { data } = await axios({
+                method: 'get',
+                url: `${host}/savedRecipes`,
+                headers: { 'Authorization': 'bearer ' + accessToken }
+            })
+
+            return data
+            
+        } catch (error) {
+            console.log(error)
+        }        
+    }
 
     const authenticate = async () => {
         try {
@@ -27,7 +65,6 @@ export const UserProvider = (props) => {
         } catch (error) {
             console.log(error)
         }
-
     }
 
     const login = async (loginEmail, loginPassword) => {
@@ -73,10 +110,11 @@ export const UserProvider = (props) => {
 
     useEffect(() => {
         authenticate()
+        fetchSavedRecipes()
     }, [])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -21,16 +21,17 @@ const JoinLogin = (props) => {
 
     const loginWithCookenAccount = () => {
         setJoinActive(false)
+        setDismissAlert(true)
         setLoginEmail('cooken@dummy.acc')
         setLoginPassword('cooken123')
     }
 
     const handleLogin = () => {
         login(loginEmail, loginPassword)
-            .then(_ => props.histoy.push('/'))
+            .then(_ => props.history.push('/'))
             .catch(errMessages => {
                 setDismissAlert(false)
-                setErrorMessages(errMessages.slice(0, 1))
+                setErrorMessages(errMessages?.slice(0, 1))
             })
     }
 
