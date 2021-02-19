@@ -16,18 +16,18 @@ export const UserProvider = (props) => {
             const { data } = await axios({
                 method: 'get',
                 url: `${host}/user`,
-                headers:{ 'Authorization': 'bearer ' + accessToken}
+                headers: { 'Authorization': 'bearer ' + accessToken }
             })
 
             if (data) {
                 setIsAuthenticated(true)
                 setUser(data)
             }
-            
+
         } catch (error) {
             console.log(error)
         }
-        
+
     }
 
     const login = async (loginEmail, loginPassword) => {
@@ -40,29 +40,34 @@ export const UserProvider = (props) => {
                     password: loginPassword
                 }
             })
-            
+
             localStorage.setItem('accessToken', data.accessToken)
-            
+
         } catch (error) {
             console.log(error)
         }
     }
 
-    const register = async (registerEmail, registerPassword) => {
+    const register = async ({ name, email, password }) => {
         try {
             const { data } = await axios({
                 method: 'post',
                 url: `${host}/user/register`,
                 data: {
-                    email: registerEmail,
-                    password: registerPassword
+                    displayName: name,
+                    email: email,
+                    password: password
                 }
             })
-            
-            localStorage.setItem('accessToken', data.accessToken)
-            
+
+            if (data?.accessToken) {
+                localStorage.setItem('accessToken', data.accessToken)
+            }
+
+            return data
+
         } catch (error) {
-            console.log(error)
+            throw error.response.data.messages
         }
     }
 

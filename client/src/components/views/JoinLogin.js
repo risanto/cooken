@@ -39,8 +39,17 @@ const JoinLogin = (props) => {
             const message = 'Please enter the same password and confirm password.'
 
             if (!errorMessages.includes(message)) {
-                setErrorMessages(errorMessages.concat(message))
+                setErrorMessages([message])
             }
+        } else {
+            register({
+                name: joinName, email: joinEmail, password: joinPassword
+            })
+            .then(_ => props.history.push('/'))
+            .catch(errMessages => {
+                setDismissAlert(false)
+                setErrorMessages(errMessages.slice(0, 1))
+            })
         }
     }
 

@@ -16,8 +16,8 @@ const Alert = ({ messages, dismissAlert, setDismissAlert, classNames }) => {
                 {messages.length === 1 && messages[0]}
                 
                 {messages.length > 1 && (<ul>
-                    {   messages.map(message => {
-                        <li>{message}</li>
+                    {   messages.map((message, idx) => {
+                        return <li key={idx}>{message}</li>
                     })
                     }
                 </ul>)}
