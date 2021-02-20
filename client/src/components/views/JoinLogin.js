@@ -28,7 +28,10 @@ const JoinLogin = (props) => {
 
     const handleLogin = () => {
         login(loginEmail, loginPassword)
-            .then(_ => props.history.push('/'))
+            .then(_ => {
+                window.location.reload(false)
+                props.history.push('/')
+            })
             .catch(errMessages => {
                 setDismissAlert(false)
                 setErrorMessages(errMessages?.slice(0, 1))
