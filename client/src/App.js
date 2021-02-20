@@ -1,4 +1,6 @@
 import React from 'react'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 import Home from './components/views/Home'
 import Recipe from './components/views/Recipe'
@@ -12,13 +14,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 const App = () => {
     return (
         <Router>
+            <ToastContainer/>
             <UserProvider>
                 <RecipeProvider>
                     <Switch>
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/recipes/search/:page" exact component={RecipeSearchResult}/>
-                        <Route path="/recipes/:id" exact component={Recipe}/>
-                        <Route path="/joinLogin" exact component={JoinLogin}/>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/recipes/search/:page" exact component={RecipeSearchResult} />
+                        <Route path="/recipes/:id" exact component={Recipe} />
+                        <Route path="/joinLogin" exact component={JoinLogin} />
                     </Switch>
                 </RecipeProvider>
             </UserProvider>

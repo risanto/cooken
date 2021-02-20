@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
+import { ToastContainer, toast } from 'react-toastify'
 
 const ImageCard = (props) => {
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
@@ -9,6 +11,18 @@ const ImageCard = (props) => {
         e.stopPropagation()
         saveRecipe(recipeId, imageSrc, text)
             .then(_ => fetchSavedRecipes())
+            .then(_ => {
+                toast('Recipe saved!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    bodyClassName: "text-gray-700"
+                })
+            })
     }
 
     const [isSaved, setIsSaved] = useState(false)
@@ -50,4 +64,4 @@ const ImageCard = (props) => {
     )
 }
 
-export default ImageCard
+export default withRouter(ImageCard)

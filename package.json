@@ -23,5 +23,7 @@
   "devDependencies": {
     "concurrently": "^5.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-toastify": "^7.0.3"
+  }
 }
