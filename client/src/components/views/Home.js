@@ -13,19 +13,17 @@ const Home = (props) => {
 
     const [randomRecipes, setRandomRecipes] = useState([])
 
-    const generateNewRandomRecipes = useCallback(() => {
+    const generateNewRandomRecipes = () => {
         setRandomRecipes([])
         getRandomRecipes()
             .then(randomRecipes => setRandomRecipes(randomRecipes))
-    }, [getRandomRecipes])
+    }
 
     const redirectTo = (link) => {
         props.history.push(link)
     }
 
-    useEffect(() => {
-        generateNewRandomRecipes()
-    }, [generateNewRandomRecipes])
+    useEffect(generateNewRandomRecipes, [])
 
     return (
         <>
