@@ -23,7 +23,9 @@ const Home = (props) => {
         props.history.push(link)
     }
 
-    useEffect(generateNewRandomRecipes, [])
+    useEffect(() => {
+        generateNewRandomRecipes()
+    }, [generateNewRandomRecipes])
 
     return (
         <>

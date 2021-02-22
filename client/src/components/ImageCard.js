@@ -20,7 +20,6 @@ const ImageCard = (props) => {
     }
 
     const handleRemoveRecipe = e => {
-        console.log('remove called')
         e.stopPropagation()
         removeFromSavedRecipes(recipeId)
             .then(_ => fetchSavedRecipes())
@@ -38,7 +37,7 @@ const ImageCard = (props) => {
         if (savedRecipes.find(el => el.recipeId === recipeId)) {
             setIsSaved(true)
         } else setIsSaved(false)
-    }, [savedRecipes])
+    }, [savedRecipes, recipeId])
 
     return (
         <div
@@ -50,6 +49,7 @@ const ImageCard = (props) => {
                 {/* Save recipe */}
                 {isAuthenticated && !isSaved && (
                     <img
+                        alt="save recipe"
                         onClick={handleSaveRecipe}
                         className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
                         src="save-icon.svg"
@@ -59,6 +59,7 @@ const ImageCard = (props) => {
                 {/* Remove recipe */}
                 {isAuthenticated && isSaved && (
                     <img
+                        alt="remove recipe"
                         onClick={handleRemoveRecipe}
                         className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
                         src="saved-icon.svg"
