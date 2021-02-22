@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
-import { toastDefault } from '../helpers/toast'
+import { toastDefault, toastError } from '../helpers/toast'
 
 const ImageCard = (props) => {
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
@@ -14,6 +14,9 @@ const ImageCard = (props) => {
             .then(_ => {
                 toastDefault('Recipe saved.')
             })
+            .catch(err => {
+                toastError(err.messages[0])
+            })
     }
 
     const handleRemoveRecipe = e => {
@@ -23,6 +26,9 @@ const ImageCard = (props) => {
             .then(_ => fetchSavedRecipes())
             .then(_ => {
                 toastDefault('Removed from saved recipes.')
+            })
+            .catch(err => {
+                toastError(err.messages[0])
             })
     }
 
