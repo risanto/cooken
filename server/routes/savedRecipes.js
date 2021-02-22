@@ -3,7 +3,7 @@ const SavedRecipeController = require('../controllers/savedRecipe')
 const auth = require('../middlewares/auth')
 
 router.use(auth)
-router.delete('/:id', SavedRecipeController.delete)
+router.delete('/:recipeId', SavedRecipeController.delete)
 router.get('/', SavedRecipeController.findByUserId)
 router.post('/', SavedRecipeController.add)
 

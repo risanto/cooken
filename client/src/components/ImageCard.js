@@ -1,34 +1,37 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
-import { ToastContainer, toast } from 'react-toastify'
+import { toastDefault } from '../helpers/toast'
 
 const ImageCard = (props) => {
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
-    const { isAuthenticated, saveRecipe, savedRecipes, fetchSavedRecipes } = useContext(UserContext)
+    const { isAuthenticated, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes } = useContext(UserContext)
 
-    const handleSaveRecipe = (e) => {
+    const handleSaveRecipe = e => {
         e.stopPropagation()
         saveRecipe(recipeId, imageSrc, text)
             .then(_ => fetchSavedRecipes())
             .then(_ => {
-                toast('Recipe saved!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    bodyClassName: "text-gray-700"
-                })
+                toastDefault('Recipe saved.')
+            })
+    }
+
+    const handleRemoveRecipe = e => {
+        console.log('remove called')
+        e.stopPropagation()
+        removeFromSavedRecipes(recipeId)
+            .then(_ => fetchSavedRecipes())
+            .then(_ => {
+                toastDefault('Removed from saved recipes.')
             })
     }
 
     const [isSaved, setIsSaved] = useState(false)
 
     useEffect(() => {
-        if (savedRecipes.find(el => el.recipeId === recipeId)) setIsSaved(true)
+        if (savedRecipes.find(el => el.recipeId === recipeId)) {
+            setIsSaved(true)
+        } else setIsSaved(false)
     }, [savedRecipes])
 
     return (
@@ -37,6 +40,8 @@ const ImageCard = (props) => {
             className={"inline-block w-3/4 m-2 transform rounded-t-lg shadow cursor-pointer no-flicker hover:-translate-y-2 hover:shadow-xl md:m-4 rounded-b-xl sm-500:w-2/5 md:w-1/4 image-card " + extraClasses}
         >
             <li className="">
+
+                {/* Save recipe */}
                 {isAuthenticated && !isSaved && (
                     <img
                         onClick={handleSaveRecipe}
@@ -45,8 +50,10 @@ const ImageCard = (props) => {
                     />
                 )}
 
+                {/* Remove recipe */}
                 {isAuthenticated && isSaved && (
                     <img
+                        onClick={handleRemoveRecipe}
                         className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
                         src="saved-icon.svg"
                     />

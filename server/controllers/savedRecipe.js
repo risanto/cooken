@@ -50,7 +50,7 @@ class SavedRecipeController {
         try {
             const savedRecipe = await SavedRecipe.destroy({
                 where: {
-                    id: +req.params.id,
+                    recipeId: +req.params.recipeId,
                     userId: +req.user.id
                 }
             })

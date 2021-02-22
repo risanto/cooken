@@ -10,6 +10,21 @@ export const UserProvider = (props) => {
     const [user, setUser] = useState({})
     const [savedRecipes, setSavedRecipes] = useState([])
 
+    const removeFromSavedRecipes = async (id) => {
+        try {
+            const { data } = await axios({
+                method: 'delete',
+                url: `${host}/savedRecipes/${+id}`,
+                headers: { 'Authorization': 'bearer ' + user.accessToken }
+            })
+
+            return data
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const saveRecipe = async (recipeId, imageSrc, title) => {
         try {
             const accessToken = localStorage.getItem('accessToken')
@@ -55,6 +70,8 @@ export const UserProvider = (props) => {
                 url: `${host}/user`,
                 headers: { 'Authorization': 'bearer ' + accessToken }
             })
+
+            data.accessToken = accessToken
 
             if (data) {
                 setIsAuthenticated(true)
@@ -113,7 +130,7 @@ export const UserProvider = (props) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes }}>
             {props.children}
         </UserContext.Provider>
     )
