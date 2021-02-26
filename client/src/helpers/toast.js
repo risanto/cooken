@@ -14,7 +14,7 @@ export const toastDefault = message => {
 }
 
 export const toastError = message => {
-    toast(message, {
+    toast.error(message, {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,

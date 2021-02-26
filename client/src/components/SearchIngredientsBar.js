@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { RecipeContext } from '../contexts/Recipe'
 
 const SearchBar = (props) => {
     const { autocompleteIngredient } = useContext(RecipeContext)
+    const { addIngredient } = props
     const [searchInput, setSearchInput] = useState('')
+    const [searchInputFinal, setSearchInputFinal] = useState('')
     const [suggestions, setSuggestions] = useState([])
-    const [cursor, setCursor] = useState(1)
+    const [cursor, setCursor] = useState(0)
 
     const handleChange = (e) => {
         setSearchInput(e.target.value)
@@ -14,8 +15,11 @@ const SearchBar = (props) => {
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            cursor > 0 && setSearchInput(suggestions[cursor])
-            // setSuggestions
+            if (cursor > 0) {
+                setSearchInputFinal(suggestions[cursor])
+            } else if (suggestions.length) {
+                setSearchInputFinal(suggestions[0])
+            }
         }
 
         if (e.keyCode === 38 && cursor > -1) {
@@ -23,31 +27,24 @@ const SearchBar = (props) => {
         } else if (e.keyCode === 40 && cursor < suggestions.length - 1) {
             setCursor(cursor + 1)
         }
-
-        console.log(cursor)
     }
 
     useEffect(() => {
-        if (searchInput.length >= 2) {
-            autocompleteIngredient(searchInput)
-                .then(result => {
-                    result = result.map((obj) => {
-                        return obj.name
-                    }).slice(0, 3)
+        autocompleteIngredient(searchInput)
+            .then(result => {
+                result = result.map((obj) => {
+                    return obj.name
+                }).slice(0, 3)
 
-                    setSuggestions(result)
-                })
-                .catch(err => console.log(err))
-        } else {
-            setSuggestions([])
-        }
+                setSuggestions(result)
+            })
+            .catch(err => console.log(err))
     }, [searchInput])
 
-    let history = useHistory()
-
-    const redirect = (link) => {
-        history.push(link)
-    }
+    useEffect(() => {
+        addIngredient(searchInputFinal)
+        setSearchInput('')
+    }, [searchInputFinal])
 
     return (
         <div id="search-bar" className={"focus:outline relative w-3/4 md:w-full shadow-md rounded-lg border " + (props.className || "")}>
