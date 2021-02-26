@@ -29,6 +29,11 @@ module.exports = {
       '50%': '50%',
       '16': '4rem',
     },
+    height: theme => ({
+      ...theme,
+      'screen--nav': 'calc(100vh - 3.5rem)',
+      'screen': '100vh'
+    }),
     screens: {
       'below-sm-500': { 'max': '499px' },
       'sm-500': '500px',

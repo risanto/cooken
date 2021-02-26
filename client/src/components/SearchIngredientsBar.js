@@ -48,7 +48,9 @@ const SearchBar = (props) => {
     }, [searchInputFinal])
 
     return (
-        <div className={"focus:outline relative shadow-md rounded-lg border flex-grow " + (props.className || "")}>
+        <div
+            className={"focus:outline relative shadow-md rounded-lg flex-grow " + (props.className || "")}
+        >
             <span className="absolute inset-y-0 left-0 pl-2 top-1">
                 <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
                     <img src="add-icon.svg" alt="add" />
@@ -62,7 +64,7 @@ const SearchBar = (props) => {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />
-            <ul className="relative right-0 mx-auto text-sm text-center text-gray-800">
+            <ul className="relative right-0 mx-auto text-sm text-center text-gray-800 bg-white">
                 {suggestions.map((suggestion, idx) => {
                     let className = (cursor === idx ? 'bg-gray-50 ' : null) + "block w-full px-1 pt-1 pl-4 "
 
