@@ -10,6 +10,22 @@ export const UserProvider = (props) => {
     const [user, setUser] = useState({})
     const [savedRecipes, setSavedRecipes] = useState([])
 
+    const updateUserIngredients = async (ingredients) => {
+        try {
+            const url = `${host}/user/ingredients?ingredientsStr=${ingredients.join(',')}`
+
+            const { data } = await axios({
+                method: 'patch', url,
+                headers: { 'Authorization': 'bearer ' + user.accessToken }
+            })
+
+            return data
+
+        } catch (error) {
+            throw error.message
+        }
+    }
+
     const removeFromSavedRecipes = async (id) => {
         try {
             const { data } = await axios({
@@ -130,7 +146,7 @@ export const UserProvider = (props) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients }}>
             {props.children}
         </UserContext.Provider>
     )

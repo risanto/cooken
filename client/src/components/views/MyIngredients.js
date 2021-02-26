@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/User'
 import Nav from '../Nav'
 import SearchIngredientsBar from '../SearchIngredientsBar'
-import { toastDefault, toastError, capitalizeFirstLetter } from '../../helpers'
+import { toastError } from '../../helpers'
 
 const MyIngredients = () => {
-    const { user } = useContext(UserContext)
+    const { user, updateUserIngredients } = useContext(UserContext)
     const [ingredients, setIngredients] = useState([])
 
     const addIngredient = (newIngredient) => {
@@ -16,12 +16,16 @@ const MyIngredients = () => {
                 } else {
                     setIngredients([newIngredient])
                 }
-
-                toastDefault(capitalizeFirstLetter(newIngredient) + ' added to your ingredients.')
             }
         } else {
             toastError("You already have that in your ingredients.")
         }
+    }
+
+    const removeIngredient = (idx) => {
+        let ingredientsCopy = [...ingredients]
+        ingredientsCopy.splice(idx, 1)
+        setIngredients(ingredientsCopy)
     }
 
     useEffect(() => {
@@ -30,17 +34,39 @@ const MyIngredients = () => {
         }
     }, [])
 
+    useEffect(() => {
+        updateUserIngredients(ingredients)
+            .catch(err => toastError(err))
+    }, [ingredients])
+
     return (
-        <div>
+        <>
             <Nav showLogo={true} />
-            {JSON.stringify(ingredients)}
-            <div className="flex justify-center align-center">
-                <SearchIngredientsBar
-                    addIngredient={addIngredient}
-                    className={"mt-10"}
-                />
+            <div className="container">
+                <section className="flex justify-center mx-2 align-center">
+                    <SearchIngredientsBar
+                        addIngredient={addIngredient}
+                        className={"mt-10"}
+                    />
+                </section>
+                <section className="flex flex-wrap mt-2">
+                    {ingredients.map((ingredient, idx) => {
+                        return <div
+                            key={idx}
+                            onClick={() => removeIngredient(idx)}
+                            className="flex inline-block py-2 pl-4 pr-3 mt-3 ml-2 border shadow-lg rounded-xl"
+                        >
+                            <span>{ingredient}</span>
+                            <img
+                                src="delete-icon.svg"
+                                alt="delete"
+                                className="h-4 ml-1 place-self-center"
+                            />
+                        </div>
+                    })}
+                </section>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -44,10 +44,11 @@ const SearchBar = (props) => {
     useEffect(() => {
         addIngredient(searchInputFinal)
         setSearchInput('')
+        setCursor(0)
     }, [searchInputFinal])
 
     return (
-        <div id="search-bar" className={"focus:outline relative w-3/4 md:w-full shadow-md rounded-lg border " + (props.className || "")}>
+        <div className={"focus:outline relative shadow-md rounded-lg border flex-grow " + (props.className || "")}>
             <span className="absolute inset-y-0 left-0 pl-2 top-1">
                 <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
                     <img src="add-icon.svg" alt="add" />
@@ -56,7 +57,7 @@ const SearchBar = (props) => {
             <input
                 className={"focus:outline-none py-2 pl-8 text-center text-sm border-solid w-full border-b"}
                 type="search"
-                placeholder="Enter your ingredients"
+                placeholder="add an ingredient..."
                 value={searchInput}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
