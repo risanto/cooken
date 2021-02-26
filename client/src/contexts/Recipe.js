@@ -50,8 +50,23 @@ export const RecipeProvider = (props) => {
         }
     }
 
+    // AUTOCOMPLETE INGREDIENT
+    
+    const autocompleteIngredient = async (query) => {
+        try {
+            let link = `${host}/recipes/autocompleteIngredient?q=${query}`
+
+            const { data } = await axios.get(link)
+
+            return data
+            
+        } catch (error) {
+            throw error
+        }
+    }
+
     return (
-        <RecipeContext.Provider value={{ getRandomRecipes, getRecipeById, searchRecipes }}>
+        <RecipeContext.Provider value={{ getRandomRecipes, getRecipeById, searchRecipes, autocompleteIngredient }}>
             {props.children}
         </RecipeContext.Provider>
     )

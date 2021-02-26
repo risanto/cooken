@@ -2,8 +2,8 @@ import { toast } from 'react-toastify'
 
 export const toastDefault = message => {
     toast(message, {
-        position: "top-right",
-        autoClose: 5000,
+        position: "bottom-right",
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -15,8 +15,8 @@ export const toastDefault = message => {
 
 export const toastError = message => {
     toast(message, {
-        position: "top-right",
-        autoClose: 5000,
+        position: "bottom-right",
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
