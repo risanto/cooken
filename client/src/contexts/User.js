@@ -16,9 +16,11 @@ export const UserProvider = (props) => {
 
     const findByIngredients = async() => {
         try {
-            if (!user.ingredientsStr) await authenticate()
+            let userData = {}
 
-            const url = `${host}/recipes/findByIngredients?q=${user.ingredientsStr}`
+            if (!userData.ingredientsStr) userData = await authenticate()
+
+            const url = `${host}/recipes/findByIngredients?q=${userData.ingredientsStr}`
 
             const { data } = await axios({
                 method: 'get', url,
@@ -27,6 +29,7 @@ export const UserProvider = (props) => {
             return data
 
         } catch (error) {
+            console.log('ERROR', error.response.data)
             throw error.message
         }
     }

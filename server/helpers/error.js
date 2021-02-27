@@ -7,10 +7,10 @@ class ErrorHandler extends Error {
 }
 
 const handleError = (err, res) => {
-    console.log('At handleError =>', err)
+    console.log('\n At handleError =>', err)
     let { statusCode, message, errors } = err
 
-    if(!statusCode) statusCode = 500
+    if(!statusCode || status) statusCode = 500
     let messages = []
 
     errors?.forEach(error => {
@@ -24,7 +24,7 @@ const handleError = (err, res) => {
 
     if (!messages.length) messages.push(message)
 
-    res.status(statusCode).json({
+    res.status(statusCode || status).json({
         status: "error",
         statusCode,
         messages

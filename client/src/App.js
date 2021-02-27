@@ -7,7 +7,7 @@ import Recipe from './components/views/Recipe'
 import RecipeSearchResult from './components/views/RecipeSearchResult'
 import JoinLogin from './components/views/JoinLogin'
 import MyIngredients from './components/views/MyIngredients'
-import RecipesICanMake from './components/views/RecipesICanMake'
+// import RecipesICanMake from './components/views/RecipesICanMake'
 
 import { RecipeProvider } from './contexts/Recipe'
 import { UserProvider } from './contexts/User'
@@ -25,7 +25,7 @@ const App = () => {
                         <Route path="/recipes/:id" exact component={Recipe} />
                         <Route path="/joinLogin" exact component={JoinLogin} />
                         <Route path="/myIngredients" exact component={MyIngredients} />
-                        <Route path="/recipesICanMake" exact component={RecipesICanMake} />
+                        {/* <Route path="/recipesICanMake" exact component={RecipesICanMake} /> */}
                     </Switch>
                 </RecipeProvider>
             </UserProvider>

@@ -2,11 +2,13 @@ import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/User'
 import Nav from '../Nav'
 import SearchIngredientsBar from '../SearchIngredientsBar'
+import RecipesICanMake from '../RecipesICanMake'
 import { toastError } from '../../helpers'
 
 const MyIngredients = (props) => {
     const { updateUserIngredients, authenticate } = useContext(UserContext)
     const [ingredients, setIngredients] = useState([])
+    const [showRecipesICanMake, setShowRecipesICanMake] = useState(false)
 
     const redirectTo = (link) => {
         props.history.push(link)
@@ -92,7 +94,8 @@ const MyIngredients = (props) => {
                     <section className="flex justify-center mt-8 align-center">
                         <button
                             onClick={() => {
-                                redirectTo('/recipesICanMake')
+                                // redirectTo('/recipesICanMake')
+                                setShowRecipesICanMake(true)
                             }}
                             className="self-center px-4 py-2 text-lg text-white bg-red-500 shadow rounded-xl focus:outline-none md:mt-0 bg-gradient-to-r hover:from-purple-600 hover:via-indigo-500 hover:to-indigo-600"
                         >
@@ -101,6 +104,9 @@ const MyIngredients = (props) => {
                     </section>
                 </div>
             </div>
+            {showRecipesICanMake && (
+                <RecipesICanMake />
+            )}
         </div>
     )
 }
