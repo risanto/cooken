@@ -6,7 +6,7 @@ const SearchBar = (props) => {
 
     let history = useHistory()
 
-    const redirect = (link) => {
+    const redirectTo = (link) => {
         history.push(link)
     }
 
@@ -22,7 +22,7 @@ const SearchBar = (props) => {
                 type="search"
                 placeholder="find something to cook..."
                 onChange={e => setSearchInput(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && redirect(`/recipes/search/1?q=${searchInput}`)}
+                onKeyDown={e => e.key === 'Enter' && redirectTo(`/recipes/search/1?q=${searchInput}`)}
             />
         </div>
     )

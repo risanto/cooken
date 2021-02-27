@@ -21,8 +21,6 @@ export const UserProvider = (props) => {
                 method: 'patch', url,
                 headers: { 'Authorization': 'bearer ' + user.accessToken }
             })
-
-
             return data
 
         } catch (error) {

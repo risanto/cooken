@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
     return (
-        <Router>
+        <>
             <ToastContainer/>
             <UserProvider>
                 <RecipeProvider>
@@ -29,7 +29,7 @@ const App = () => {
                     </Switch>
                 </RecipeProvider>
             </UserProvider>
-        </Router>
+        </>
     )
 }
 
