@@ -14,6 +14,23 @@ export const UserProvider = (props) => {
         return localStorage.getItem('accessToken')
     }
 
+    const findByIngredients = async() => {
+        try {
+            if (!user.ingredientsStr) await authenticate()
+
+            const url = `${host}/recipes/findByIngredients?q=${user.ingredientsStr}`
+
+            const { data } = await axios({
+                method: 'get', url,
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
+            })
+            return data
+
+        } catch (error) {
+            throw error.message
+        }
+    }
+
     const updateUserIngredients = async (ingredients) => {
         try {
             const ingredientsStr = ingredients.length ? ingredients.join(',') : ''
@@ -98,7 +115,7 @@ export const UserProvider = (props) => {
         }
     }, [])
 
-    // PUBLIC ROUTES
+    // PUBLIC ROUTES (LOGIN/REGISTRATION)
 
     const login = async (loginEmail, loginPassword) => {
         try {
@@ -147,7 +164,7 @@ export const UserProvider = (props) => {
     }, [authenticate, fetchSavedRecipes])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate, findByIngredients }}>
             {props.children}
         </UserContext.Provider>
     )
