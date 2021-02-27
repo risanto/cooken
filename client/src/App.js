@@ -11,7 +11,7 @@ import RecipesICanMake from './components/views/RecipesICanMake'
 
 import { RecipeProvider } from './contexts/Recipe'
 import { UserProvider } from './contexts/User'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 const App = () => {
     return (

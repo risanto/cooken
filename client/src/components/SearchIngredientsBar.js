@@ -40,14 +40,14 @@ const SearchBar = (props) => {
                 setSuggestions(result)
             })
             .catch(err => console.log(err))
-    }, [searchInput]) // autocomplete based on current search input
+    }, [searchInput, autocompleteIngredient]) // autocomplete based on current search input
 
     useEffect(() => {
         addIngredient(searchInputFinal)
         setSearchInput('')
         setCursor(0)
         setSuggestions([])
-    }, [searchInputFinal]) // add ingredient when the search input is final
+    }, [searchInputFinal, addIngredient]) // add ingredient when the search input is final
 
     return (
         <div

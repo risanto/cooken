@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useCallback } from "react";
 import axios from 'axios'
 import host from '../host'
 
@@ -10,16 +10,18 @@ export const UserProvider = (props) => {
     const [user, setUser] = useState({})
     const [savedRecipes, setSavedRecipes] = useState([])
 
+    const getAccessToken = () => {
+        return localStorage.getItem('accessToken')
+    }
+
     const updateUserIngredients = async (ingredients) => {
         try {
             const ingredientsStr = ingredients.length ? ingredients.join(',') : ''
             const url = `${host}/user/ingredients?ingredientsStr=${ingredientsStr}`
 
-            if (!user.accessToken) await authenticate()
-            
             const { data } = await axios({
                 method: 'patch', url,
-                headers: { 'Authorization': 'bearer ' + user.accessToken }
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
             return data
 
@@ -30,12 +32,10 @@ export const UserProvider = (props) => {
 
     const removeFromSavedRecipes = async (id) => {
         try {
-            if (!user.accessToken) await authenticate()
-
             const { data } = await axios({
                 method: 'delete',
                 url: `${host}/savedRecipes/${+id}`,
-                headers: { 'Authorization': 'bearer ' + user.accessToken }
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
 
             return data
@@ -47,14 +47,12 @@ export const UserProvider = (props) => {
 
     const saveRecipe = async (recipeId, imageSrc, title) => {
         try {
-            if (!user.accessToken) await authenticate()
-
             let query = `recipeId=${recipeId}&imageSrc=${imageSrc}&title=${title}`
 
             const { data } = await axios({
                 method: 'post',
                 url: `${host}/savedRecipes?${query}`,
-                headers: { 'Authorization': 'bearer ' + user.accessToken }
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
 
             return data
@@ -64,14 +62,12 @@ export const UserProvider = (props) => {
         }
     }
 
-    const fetchSavedRecipes = async () => {
+    const fetchSavedRecipes = useCallback(async () => {
         try {
-            if (!user.accessToken) await authenticate()
-
             const { data } = await axios({
                 method: 'get',
                 url: `${host}/savedRecipes`,
-                headers: { 'Authorization': 'bearer ' + user.accessToken }
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
 
             setSavedRecipes(data)
@@ -79,19 +75,17 @@ export const UserProvider = (props) => {
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [])
 
-    const authenticate = async () => {
+    const authenticate = useCallback(async () => {
         try {
-            const accessToken = localStorage.getItem('accessToken')
-
             const { data } = await axios({
                 method: 'get',
                 url: `${host}/user`,
-                headers: { 'Authorization': 'bearer ' + accessToken }
+                headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
 
-            data.accessToken = accessToken
+            data.accessToken = getAccessToken()
 
             if (data) {
                 setIsAuthenticated(true)
@@ -102,7 +96,7 @@ export const UserProvider = (props) => {
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [])
 
     // PUBLIC ROUTES
 
@@ -150,7 +144,7 @@ export const UserProvider = (props) => {
     useEffect(() => {
         authenticate()
         fetchSavedRecipes()
-    }, [])
+    }, [authenticate, fetchSavedRecipes])
 
     return (
         <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate }}>

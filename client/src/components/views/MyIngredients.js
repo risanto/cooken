@@ -4,9 +4,13 @@ import Nav from '../Nav'
 import SearchIngredientsBar from '../SearchIngredientsBar'
 import { toastError } from '../../helpers'
 
-const MyIngredients = () => {
+const MyIngredients = (props) => {
     const { updateUserIngredients, authenticate } = useContext(UserContext)
     const [ingredients, setIngredients] = useState([])
+
+    const redirectTo = (link) => {
+        props.history.push(link)
+    }
 
     const addIngredient = (newIngredient) => {
         if (!ingredients.includes(newIngredient)) {
@@ -38,7 +42,7 @@ const MyIngredients = () => {
             .catch(err => {
                 toastError(err)
             })
-    }, [])
+    }, [authenticate])
 
     useEffect(() => {
         if (ingredients.length) {
@@ -47,7 +51,7 @@ const MyIngredients = () => {
                     toastError(err)
                 })
         }
-    }, [ingredients])
+    }, [ingredients, updateUserIngredients])
 
     return (
         <div
@@ -87,6 +91,9 @@ const MyIngredients = () => {
                     </section>
                     <section className="flex justify-center mt-8 align-center">
                         <button
+                            onClick={() => {
+                                redirectTo('/recipesICanMake')
+                            }}
                             className="self-center px-4 py-2 text-lg text-white bg-red-500 shadow rounded-xl focus:outline-none md:mt-0 bg-gradient-to-r hover:from-purple-600 hover:via-indigo-500 hover:to-indigo-600"
                         >
                             Show me what I can make

@@ -29,7 +29,6 @@ const JoinLogin = (props) => {
     const handleLogin = () => {
         login(loginEmail, loginPassword)
             .then(_ => {
-                // window.location.reload(false)
                 props.history.push('/')
             })
             .catch(errMessages => {
@@ -59,7 +58,6 @@ const JoinLogin = (props) => {
                 name: joinName, email: joinEmail, password: joinPassword
             })
             .then(_ => {
-                // window.location.reload(false)
                 props.history.push('/')
             })
             .catch(errMessages => {
