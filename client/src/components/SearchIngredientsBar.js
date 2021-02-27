@@ -14,6 +14,7 @@ const SearchBar = (props) => {
     }
 
     const handleKeyDown = (e) => {
+        console.log(e.key)
         if (e.key === 'Enter') {
             if (cursor > 0) {
                 setSearchInputFinal(suggestions[cursor])
@@ -39,13 +40,14 @@ const SearchBar = (props) => {
                 setSuggestions(result)
             })
             .catch(err => console.log(err))
-    }, [searchInput])
+    }, [searchInput]) // autocomplete based on current search input
 
     useEffect(() => {
         addIngredient(searchInputFinal)
         setSearchInput('')
         setCursor(0)
-    }, [searchInputFinal])
+        setSuggestions([])
+    }, [searchInputFinal]) // add ingredient when the search input is final
 
     return (
         <div
@@ -66,7 +68,7 @@ const SearchBar = (props) => {
             />
             <ul className="relative right-0 mx-auto text-sm text-center text-gray-800 bg-white">
                 {suggestions.map((suggestion, idx) => {
-                    let className = (cursor === idx ? 'bg-gray-50 ' : null) + "block w-full px-1 pt-1 pl-4 "
+                    let className = (cursor === idx ? 'bg-gray-50 ' : '') + "block w-full px-1 pt-1 pl-4 cursor-pointer "
 
                     if (idx === suggestions.length - 1) {
                         className += "pb-2"
@@ -74,7 +76,15 @@ const SearchBar = (props) => {
                         className += "pb-1"
                     }
 
-                    return <li key={idx} className={className}>{suggestion}</li>
+                    return <li
+                        key={idx}
+                        className={className}
+                        onMouseEnter={() => setCursor(idx)}
+                        onClick={e => {
+                            e.key = 'Enter'
+                            handleKeyDown(e)
+                        }}
+                    >{suggestion}</li>
                 })}
             </ul>
         </div>
