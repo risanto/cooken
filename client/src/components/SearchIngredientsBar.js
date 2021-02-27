@@ -54,7 +54,13 @@ const SearchBar = (props) => {
             className={"focus:outline relative shadow-md rounded-lg flex-grow " + (props.className || "")}
         >
             <span className="absolute inset-y-0 left-0 pl-2 top-1">
-                <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+                <button
+                    type="submit" className="p-1 focus:outline-none focus:shadow-outline"
+                    onClick={e => {
+                        e.key = 'Enter'
+                        handleKeyDown(e)
+                    }} // use the same behaviour as enter keydown
+                >
                     <img src="add-icon.svg" alt="add" />
                 </button>
             </span>
@@ -83,7 +89,7 @@ const SearchBar = (props) => {
                         onClick={e => {
                             e.key = 'Enter'
                             handleKeyDown(e)
-                        }}
+                        }} // use the same behaviour as enter keydown
                     >{suggestion}</li>
                 })}
             </ul>
