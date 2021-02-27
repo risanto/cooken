@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export const groupBy = (data, property, sort) => {
+export const groupRecipesBy = (data, property, sort) => {
     let grouped = _.mapValues(
         _.groupBy(data, property), (result) => {
             return result
@@ -20,7 +20,7 @@ export const groupBy = (data, property, sort) => {
 
     sortKeys.forEach(key => {
         groupedSorted.push({
-            usedIngredients: +key,
+            [property]: +key,
             recipes: grouped[key]
         })
     })

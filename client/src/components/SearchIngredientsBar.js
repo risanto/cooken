@@ -14,7 +14,6 @@ const SearchBar = (props) => {
     }
 
     const handleKeyDown = (e) => {
-        console.log(e.key)
         if (e.key === 'Enter') {
             if (cursor > 0) {
                 setSearchInputFinal(suggestions[cursor])

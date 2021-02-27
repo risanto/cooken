@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { UserContext } from '../contexts/User'
-import { toastError, groupBy } from '../helpers'
+import { toastError, groupRecipesBy } from '../helpers'
 import ImageCardList from './ImageCardList'
 import SkeletonImageCardList from './SkeletonImageCardList'
 
@@ -11,7 +11,7 @@ const RecipesICanMake = () => {
     useEffect(() => {
         findByIngredients()
             .then(data => {
-                const grouped = groupBy(data, 'usedIngredientCount', 'desc')
+                const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc')
                 setRecipeGroups(grouped)
             })
             .catch(err => {
@@ -27,7 +27,6 @@ const RecipesICanMake = () => {
                     key={idx}
                 >
                     <h2 className="mt-4 text-center">Recipes that match your {recipeGroup.usedIngredients} ingredients</h2>
-                    {/* {JSON.stringify(recipeGroup)} */}
                     <ImageCardList list={recipeGroup.recipes} />
                 </div>
             })}

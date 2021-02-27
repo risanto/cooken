@@ -1,5 +1,5 @@
 import { capitalizeFirstLetter } from './capitalizeFirstLetter'
-import { groupBy } from './groupBy'
+import { groupRecipesBy } from './groupRecipesBy'
 import { toastDefault, toastError } from './toast'
 
-export { capitalizeFirstLetter, toastDefault, toastError, groupBy }
+export { capitalizeFirstLetter, toastDefault, toastError, groupRecipesBy }
