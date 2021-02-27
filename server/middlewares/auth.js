@@ -6,12 +6,12 @@ const auth = async (req, res, next) => {
         const token = authHeader && authHeader.split(' ')[1]
 
         if (!token) return res.sendStatus(401)
-        req.user = await verifyAccessToken(token)
+        req.user = verifyAccessToken(token)
         next()
 
     } catch (error) {
-        console.log(error)
-        if (error) return res.sendStatus(403)
+        console.log('Error auth ===>', error)
+        if (error) return res.status(400).send('Invalid token!')
     }
 }
 

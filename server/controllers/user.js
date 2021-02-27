@@ -56,10 +56,8 @@ class UserController {
                 throw new ErrorHandler(400, 'Incorrect email/password.')
             } else {
                 user = { id: user.id, name: user.displayName }
-
-                return res.status(200).json({
-                    accessToken: generateAccessToken(user)
-                })
+                const accessToken = generateAccessToken(user)
+                return res.status(200).json({ accessToken })
             }
 
 

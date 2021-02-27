@@ -12,12 +12,16 @@ export const UserProvider = (props) => {
 
     const updateUserIngredients = async (ingredients) => {
         try {
-            const url = `${host}/user/ingredients?ingredientsStr=${ingredients.join(',')}`
+            const ingredientsStr = ingredients.length ? ingredients.join(',') : ''
+            const url = `${host}/user/ingredients?ingredientsStr=${ingredientsStr}`
 
+            if (!user.accessToken) await authenticate()
+            
             const { data } = await axios({
                 method: 'patch', url,
                 headers: { 'Authorization': 'bearer ' + user.accessToken }
             })
+
 
             return data
 
@@ -28,6 +32,8 @@ export const UserProvider = (props) => {
 
     const removeFromSavedRecipes = async (id) => {
         try {
+            if (!user.accessToken) await authenticate()
+
             const { data } = await axios({
                 method: 'delete',
                 url: `${host}/savedRecipes/${+id}`,
@@ -35,7 +41,7 @@ export const UserProvider = (props) => {
             })
 
             return data
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -43,14 +49,14 @@ export const UserProvider = (props) => {
 
     const saveRecipe = async (recipeId, imageSrc, title) => {
         try {
-            const accessToken = localStorage.getItem('accessToken')
+            if (!user.accessToken) await authenticate()
 
             let query = `recipeId=${recipeId}&imageSrc=${imageSrc}&title=${title}`
-    
+
             const { data } = await axios({
                 method: 'post',
                 url: `${host}/savedRecipes?${query}`,
-                headers: { 'Authorization': 'bearer ' + accessToken }
+                headers: { 'Authorization': 'bearer ' + user.accessToken }
             })
 
             return data
@@ -62,19 +68,19 @@ export const UserProvider = (props) => {
 
     const fetchSavedRecipes = async () => {
         try {
-            const accessToken = localStorage.getItem('accessToken')
-    
+            if (!user.accessToken) await authenticate()
+
             const { data } = await axios({
                 method: 'get',
                 url: `${host}/savedRecipes`,
-                headers: { 'Authorization': 'bearer ' + accessToken }
+                headers: { 'Authorization': 'bearer ' + user.accessToken }
             })
 
             setSavedRecipes(data)
 
         } catch (error) {
             console.log(error)
-        }        
+        }
     }
 
     const authenticate = async () => {
@@ -93,11 +99,14 @@ export const UserProvider = (props) => {
                 setIsAuthenticated(true)
                 setUser(data)
             }
+            return data
 
         } catch (error) {
             console.log(error)
         }
     }
+
+    // PUBLIC ROUTES
 
     const login = async (loginEmail, loginPassword) => {
         try {
@@ -146,7 +155,7 @@ export const UserProvider = (props) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate }}>
             {props.children}
         </UserContext.Provider>
     )

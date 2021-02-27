@@ -27,6 +27,7 @@ module.exports = {
       'contain': 'contain',
       '30%': '30%',
       '50%': '50%',
+      '75%': '75%',
       '16': '4rem',
     },
     height: theme => ({
