@@ -1,24 +1,9 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { UserContext } from '../contexts/User'
-import { toastError, groupRecipesBy } from '../helpers'
+import React from 'react'
 import ImageCardList from './ImageCardList'
 import SkeletonImageCardList from './SkeletonImageCardList'
 
 const RecipesICanMake = (props) => {
     const { recipeGroups } = props
-    // console.log(recipeGroups)
-    // const [recipeGroups, setRecipeGroups] = useState([])
-
-    // useEffect(() => {
-    //     findByIngredients()
-    //         .then(data => {
-    //             const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc')
-    //             setRecipeGroups(grouped)
-    //         })
-    //         .catch(err => {
-    //             toastError(err)
-    //         })
-    // }, [])
 
     return (
         <section className="mt-8">
