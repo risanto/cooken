@@ -53,7 +53,6 @@ const MyIngredients = (props) => {
 
     useEffect(() => {
         if (showRecipesICanMake) {
-            console.log(ingredients.length)
             if (ingredients.length === 0) {
                 setShowRecipesICanMake(false)
                 setLoadRecipesICanMake(false)

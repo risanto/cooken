@@ -15,7 +15,10 @@ const Recipe = () => {
 
     useEffect(() => {
         getRecipeById(id)
-            .then(recipeData => setRecipe(recipeData))
+            .then(recipeData => {
+                console.log(recipeData)
+                setRecipe(recipeData)
+            })
     }, [getRecipeById, id])
 
     return (
@@ -41,6 +44,9 @@ const Recipe = () => {
                             vegan={recipe.vegan}
                             glutenFree={recipe.glutenFree}
                             dairyFree={recipe.dairyFree}
+                            recipeId={recipe.id}
+                            imageSrc={recipe.image}
+                            text={recipe.title}
                         />
                         <RecipeIngredientsDirections
                             extendedIngredients={recipe.extendedIngredients}
