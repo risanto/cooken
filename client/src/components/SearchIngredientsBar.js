@@ -46,7 +46,7 @@ const SearchBar = (props) => {
         setSearchInput('')
         setCursor(0)
         setSuggestions([])
-    }, [searchInputFinal, addIngredient]) // add ingredient when the search input is final
+    }, [searchInputFinal]) // add ingredient when the search input is final
 
     return (
         <div

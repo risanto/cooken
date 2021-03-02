@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export const groupRecipesBy = (data, property, sort) => {
+export const groupRecipesBy = (data, property, sort, ingredientsLength) => {
     let grouped = _.mapValues(
         _.groupBy(data, property), (result) => {
             return result
@@ -19,10 +19,12 @@ export const groupRecipesBy = (data, property, sort) => {
     let groupedSorted = []
 
     sortKeys.forEach(key => {
-        groupedSorted.push({
-            [property]: +key,
-            recipes: grouped[key]
-        })
+        if (!isNaN(key) && key <= ingredientsLength) {
+            groupedSorted.push({
+                [property]: isNaN(key) ? key : +key,
+                recipes: grouped[key]
+            })
+        }
     })
 
     return groupedSorted

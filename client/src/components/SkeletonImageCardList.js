@@ -4,13 +4,13 @@ import Skeleton from "react-loading-skeleton"
 const SkeletonImageCardList = () => {
     return (
         <section>
-        <div className="flex justify-center align-center">
+        <div className="flex justify-center bg-white align-center">
             <div className="w-2/3 mt-4 md:w-1/3">
                 <Skeleton/>
             </div>
         </div>
 
-        <ul className="flex flex-wrap justify-center list-none">
+        <ul className="flex flex-wrap justify-center list-none bg-white">
           {Array(6)
             .fill()
             .map((item, index) => (

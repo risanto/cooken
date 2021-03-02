@@ -3,16 +3,14 @@ import { UserContext } from '../../contexts/User'
 import Nav from '../Nav'
 import SearchIngredientsBar from '../SearchIngredientsBar'
 import RecipesICanMake from '../RecipesICanMake'
-import { toastError } from '../../helpers'
+import { toastError, groupRecipesBy } from '../../helpers'
 
 const MyIngredients = (props) => {
-    const { updateUserIngredients, authenticate } = useContext(UserContext)
+    const { updateUserIngredients, authenticate, findByIngredients } = useContext(UserContext)
     const [ingredients, setIngredients] = useState([])
     const [showRecipesICanMake, setShowRecipesICanMake] = useState(false)
-
-    const redirectTo = (link) => {
-        props.history.push(link)
-    }
+    const [loadRecipesICanMake, setLoadRecipesICanMake] = useState(false)
+    const [recipeGroups, setRecipeGroups] = useState([])
 
     const addIngredient = (newIngredient) => {
         if (!ingredients.includes(newIngredient)) {
@@ -24,7 +22,7 @@ const MyIngredients = (props) => {
                 }
             }
         } else {
-            toastError("You already have that in your ingredients.")
+            toastError("You already have that in your list of ingredients.")
         }
     }
 
@@ -47,13 +45,30 @@ const MyIngredients = (props) => {
     }, [authenticate])
 
     useEffect(() => {
-        if (ingredients.length) {
-            updateUserIngredients(ingredients)
-                .catch(err => {
-                    toastError(err)
-                })
-        }
+        updateUserIngredients(ingredients)
+            .catch(err => {
+                toastError(err)
+            })
     }, [ingredients, updateUserIngredients])
+
+    useEffect(() => {
+        if (showRecipesICanMake) {
+            console.log(ingredients.length)
+            if (ingredients.length === 0) {
+                setShowRecipesICanMake(false)
+                setLoadRecipesICanMake(false)
+                toastError('Please add an ingredient first!')
+            } else {
+                setLoadRecipesICanMake(true)
+                findByIngredients()
+                    .then(data => {
+                        const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc', ingredients.length)
+                        setRecipeGroups(grouped)
+                    })
+                    .catch(err => toastError(err))
+            }
+        }
+    }, [ingredients, showRecipesICanMake])
 
     return (
         <div
@@ -94,7 +109,6 @@ const MyIngredients = (props) => {
                     <section className="flex justify-center mt-8 align-center">
                         <button
                             onClick={() => {
-                                // redirectTo('/recipesICanMake')
                                 setShowRecipesICanMake(true)
                             }}
                             className="self-center px-4 py-2 text-lg text-white bg-red-500 shadow rounded-xl focus:outline-none md:mt-0 bg-gradient-to-r hover:from-purple-600 hover:via-indigo-500 hover:to-indigo-600"
@@ -104,8 +118,9 @@ const MyIngredients = (props) => {
                     </section>
                 </div>
             </div>
-            {showRecipesICanMake && (
-                <RecipesICanMake />
+            {showRecipesICanMake && loadRecipesICanMake && (
+                <RecipesICanMake
+                    recipeGroups={recipeGroups} />
             )}
         </div>
     )
