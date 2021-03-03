@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
 
 const Nav = (props) => {
@@ -29,9 +29,11 @@ const Nav = (props) => {
                 />
 
                 {props.showLogo && (
+                    <Link to="/">
                     <img
-                        onClick={() => redirectTo('/')}
+                        // onClick={() => redirectTo('/')}
                         src="/cooken-logo.png" alt="cooken-logo" className="w-20 cursor-pointer" />
+                    </Link>
                 )}
             </nav>
             <aside

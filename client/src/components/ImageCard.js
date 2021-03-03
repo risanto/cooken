@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
 import { toastDefault, toastError } from '../helpers/toast'
+import { Link } from 'react-router-dom'
 
 const ImageCard = (props) => {
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
@@ -40,8 +41,7 @@ const ImageCard = (props) => {
     }, [savedRecipes, recipeId])
 
     return (
-        <div
-            onClick={() => props.history.push(linkTo)}
+        <Link to={linkTo}
             className={"inline-block w-3/4 m-2 transform rounded-t-lg shadow cursor-pointer no-flicker hover:-translate-y-2 hover:shadow-xl md:m-4 rounded-b-xl sm-500:w-2/5 md:w-1/4 image-card " + extraClasses}
         >
             <li className="">
@@ -74,7 +74,7 @@ const ImageCard = (props) => {
                 {/* VERSION 2 */}
                 <p className="block px-4 py-3 text-sm text-center text-gray-700 truncate image-card-text rounded-b-xl md:py-2 sm-500:py-1 bg-gradient-to-r">{text}</p>
             </li>
-        </div>
+        </Link>
     )
 }
 
