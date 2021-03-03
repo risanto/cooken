@@ -32,6 +32,14 @@ const MyIngredients = (props) => {
         setIngredients(ingredientsCopy)
     }
 
+    const handleShowRecipes = () => {
+        if (ingredients.length === 0) {
+            toastError('Please add an ingredient first!')
+        } else {
+            setShowRecipesICanMake(true)
+        }
+    }
+
     useEffect(() => {
         authenticate()
             .then(data => {
@@ -45,27 +53,27 @@ const MyIngredients = (props) => {
     }, [authenticate])
 
     useEffect(() => {
-        updateUserIngredients(ingredients)
-            .catch(err => {
-                toastError(err)
-            })
+        if (ingredients.length === 0) {
+            setShowRecipesICanMake(false)
+            setLoadRecipesICanMake(false)
+        } else {
+            updateUserIngredients(ingredients)
+                .catch(err => {
+                    toastError(err)
+                })
+        }
     }, [ingredients, updateUserIngredients])
 
     useEffect(() => {
+        console.log('called when ingredients updated?', ingredients)
         if (showRecipesICanMake) {
-            if (ingredients.length === 0) {
-                setShowRecipesICanMake(false)
-                setLoadRecipesICanMake(false)
-                toastError('Please add an ingredient first!')
-            } else {
-                setLoadRecipesICanMake(true)
-                findByIngredients()
-                    .then(data => {
-                        const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc', ingredients.length)
-                        setRecipeGroups(grouped)
-                    })
-                    .catch(err => toastError(err))
-            }
+            setLoadRecipesICanMake(true)
+            findByIngredients(ingredients)
+                .then(data => {
+                    const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc', ingredients.length)
+                    setRecipeGroups(grouped)
+                })
+                .catch(err => toastError(err))
         }
     }, [ingredients, showRecipesICanMake])
 
@@ -107,9 +115,7 @@ const MyIngredients = (props) => {
                     </section>
                     <section className="flex justify-center mt-8 align-center">
                         <button
-                            onClick={() => {
-                                setShowRecipesICanMake(true)
-                            }}
+                            onClick={handleShowRecipes}
                             className="self-center px-4 py-2 text-lg text-white bg-red-500 shadow rounded-xl focus:outline-none md:mt-0 bg-gradient-to-r hover:from-purple-600 hover:via-indigo-500 hover:to-indigo-600"
                         >
                             Show me what I can make

@@ -14,13 +14,10 @@ export const UserProvider = (props) => {
         return localStorage.getItem('accessToken')
     }
 
-    const findByIngredients = async() => {
+    const findByIngredients = async(ingredients) => {
         try {
-            let userData = {}
-
-            if (!userData.ingredientsStr) userData = await authenticate()
-
-            const url = `${host}/recipes/findByIngredients?q=${userData.ingredientsStr}`
+            const ingredientsStr = ingredients.length ? ingredients.join(',') : ''
+            const url = `${host}/recipes/findByIngredients?q=${ingredientsStr}`
 
             const { data } = await axios({
                 method: 'get', url,
@@ -43,6 +40,7 @@ export const UserProvider = (props) => {
                 method: 'patch', url,
                 headers: { 'Authorization': 'bearer ' + getAccessToken() }
             })
+
             return data
 
         } catch (error) {
