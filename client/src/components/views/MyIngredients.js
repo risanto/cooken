@@ -65,7 +65,6 @@ const MyIngredients = (props) => {
     }, [ingredients, updateUserIngredients])
 
     useEffect(() => {
-        console.log('called when ingredients updated?', ingredients)
         if (showRecipesICanMake) {
             setLoadRecipesICanMake(true)
             findByIngredients(ingredients)

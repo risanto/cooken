@@ -30,51 +30,48 @@ const Nav = (props) => {
 
                 {props.showLogo && (
                     <Link to="/">
-                    <img
-                        // onClick={() => redirectTo('/')}
-                        src="/cooken-logo.png" alt="cooken-logo" className="w-20 cursor-pointer" />
+                        <img
+                            src="/cooken-logo.png" alt="cooken-logo" className="w-20 cursor-pointer" />
                     </Link>
                 )}
             </nav>
             <aside
-                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white " + (isOpen ? 'translate-x-0' : '-translate-x-full')}
+                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white " 
+                + (isOpen ? 'translate-x-0' : '-translate-x-full')
+            }
             >
-                <img
-                    onClick={() => redirectTo('/')}
-                    src="/cooken-logo.png" alt="cooken-logo" className="w-20 py-4 mx-auto border-b cursor-pointer"
-                />
-                <ul>
-                    <li
-                        onClick={() => redirectTo('/')}
-                        className="mt-4 text-center cursor-pointer hover:text-red-500"
-                    >Home</li>
-                    {isAuthenticated && (
-                        <>
-                            <li
-                                onClick={() => redirectTo('/myIngredients')}
-                                className="mt-4 text-center cursor-pointer hover:text-red-500"
-                            >My ingredients
-                            </li>
-                            <li
-                                onClick={() => redirectTo('/savedRecipes')}
-                                className="mt-4 text-center cursor-pointer hover:text-red-500"
-                            >Saved recipes
-                            </li>
-                            <li className="mt-4 text-center cursor-pointer hover:text-red-500">Log out</li>
-                        </>
-                    )}
-                    {!isAuthenticated && (
-                        <li
-                            onClick={() => redirectTo('/joinLogin')}
-                            className="mt-4 text-center cursor-pointer hover:text-red-500"
-                        >Join / log in</li>
-                    )}
-                </ul>
+                <Link to="/">
+                    <img
+                        src="/cooken-logo.png" alt="cooken-logo" className="w-20 py-6 mx-auto border-b border-gray-200 cursor-pointer"
+                    />
+                </Link>
+                <Link to="/"
+                    className="block mt-6 text-center cursor-pointer hover:text-red-500"
+                >Home</Link>
+                {isAuthenticated && (
+                    <>
+                        <Link to='/myIngredients'
+                            className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                        >My ingredients
+                            </Link>
+                        <Link
+                            to='/savedRecipes'
+                            className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                        >Saved recipes
+                            </Link>
+                        <Link className="block mt-4 text-center cursor-pointer hover:text-red-500">Log out</Link>
+                    </>
+                )}
+                {!isAuthenticated && (
+                    <Link to='/joinLogin'
+                        className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                    >Join / log in</Link>
+                )}
             </aside>
             {isOpen && (
                 <div
                     onClick={toggleOpen}
-                    className="absolute inset-0 z-10 bg-black opacity-25 cursor-pointer"
+                    className="absolute inset-0 z-10 bg-black opacity-20"
                     tabIndex="0"
                 ></div>
             )}
