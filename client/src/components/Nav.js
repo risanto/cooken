@@ -36,42 +36,42 @@ const Nav = (props) => {
                 )}
             </nav>
             <aside
-                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white " 
+                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white flex flex-col align-center " 
                 + (isOpen ? 'translate-x-0' : '-translate-x-full')
             }
             >
-                <Link to="/">
+                <Link to="/" className="inline-block mx-auto">
                     <img
                         src="/cooken-logo.png" alt="cooken-logo" className="w-20 py-6 mx-auto border-b border-gray-200 cursor-pointer"
                     />
                 </Link>
                 <Link to="/"
-                    className="block mt-6 text-center cursor-pointer hover:text-red-500"
+                    className="inline-block mx-auto mt-6 text-center cursor-pointer hover:text-red-500"
                 >Home</Link>
                 {isAuthenticated && (
                     <>
                         <Link to='/myIngredients'
-                            className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                            className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                         >My ingredients
                             </Link>
                         <Link
                             to='/savedRecipes'
-                            className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                            className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                         >Saved recipes
                             </Link>
-                        <Link className="block mt-4 text-center cursor-pointer hover:text-red-500">Log out</Link>
+                        <Link className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500">Log out</Link>
                     </>
                 )}
                 {!isAuthenticated && (
                     <Link to='/joinLogin'
-                        className="block mt-4 text-center cursor-pointer hover:text-red-500"
+                        className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                     >Join / log in</Link>
                 )}
             </aside>
             {isOpen && (
                 <div
                     onClick={toggleOpen}
-                    className="absolute inset-0 z-10 bg-black opacity-20"
+                    className="absolute inset-0 z-10 h-screen bg-black opacity-20"
                     tabIndex="0"
                 ></div>
             )}

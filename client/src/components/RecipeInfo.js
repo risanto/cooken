@@ -83,7 +83,7 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
                 <img
                     alt="save recipe"
                     onClick={handleSaveRecipe}
-                    className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
+                    className="absolute top-0 right-0 transform cursor-pointer no-flicker hover:-translate-y-1"
                     src="/save-icon.svg"
                 />
             )}
@@ -93,7 +93,7 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
                 <img
                     alt="remove recipe"
                     onClick={handleRemoveRecipe}
-                    className="absolute top-0 right-0 transform no-flicker hover:-translate-y-1"
+                    className="absolute top-0 right-0 transform cursor-pointer no-flicker hover:-translate-y-1"
                     src="/saved-icon.svg"
                 />
             )}
