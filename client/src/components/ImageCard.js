@@ -10,6 +10,7 @@ const ImageCard = (props) => {
 
     const handleSaveRecipe = e => {
         e.stopPropagation()
+        e.preventDefault()
         saveRecipe(recipeId, imageSrc, text)
             .then(_ => fetchSavedRecipes())
             .then(_ => {
@@ -22,6 +23,7 @@ const ImageCard = (props) => {
 
     const handleRemoveRecipe = e => {
         e.stopPropagation()
+        e.preventDefault()
         removeFromSavedRecipes(recipeId)
             .then(_ => fetchSavedRecipes())
             .then(_ => {

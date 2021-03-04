@@ -9,7 +9,7 @@ const RecipesICanMake = (props) => {
         <section className="mt-8">
             {!!recipeGroups.length && recipeGroups.map((recipeGroup, idx) => {
                 return <div
-                    className="px-2 py-8 bg-white rounded-lg"
+                    className="py-8 bg-white rounded-lg px-80"
                     key={idx}
                 >
                     <h2 className="font-bold text-center">Recipes that match {recipeGroup.usedIngredientCount} of your ingredient(s)</h2>
