@@ -70,7 +70,7 @@ const Nav = (props) => {
             {isOpen && (
                 <div
                     onClick={toggleOpen}
-                    className="absolute inset-0 z-10 h-screen bg-black opacity-20"
+                    className="fixed inset-0 z-10 bg-black opacity-20"
                     tabIndex="0"
                 ></div>
             )}
