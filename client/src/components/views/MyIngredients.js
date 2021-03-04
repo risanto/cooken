@@ -6,11 +6,15 @@ import RecipesICanMake from '../RecipesICanMake'
 import { toastError, groupRecipesBy } from '../../helpers'
 
 const MyIngredients = (props) => {
-    const { updateUserIngredients, authenticate, findByIngredients } = useContext(UserContext)
+    const { updateUserIngredients, authenticate, findByIngredients, getAccessToken } = useContext(UserContext)
     const [ingredients, setIngredients] = useState([])
     const [showRecipesICanMake, setShowRecipesICanMake] = useState(false)
     const [loadRecipesICanMake, setLoadRecipesICanMake] = useState(false)
     const [recipeGroups, setRecipeGroups] = useState([])
+    
+    if (!getAccessToken()) {
+        props.history.push('/')
+    }
 
     const addIngredient = (newIngredient) => {
         if (!ingredients.includes(newIngredient)) {

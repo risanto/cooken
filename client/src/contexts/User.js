@@ -14,6 +14,10 @@ export const UserProvider = (props) => {
         return localStorage.getItem('accessToken')
     }
 
+    const removeAccessToken = () => {
+        return localStorage.removeItem('accessToken')
+    }
+
     const findByIngredients = async(ingredients) => {
         try {
             const ingredientsStr = ingredients.length ? ingredients.join(',') : ''
@@ -165,7 +169,7 @@ export const UserProvider = (props) => {
     }, [authenticate, fetchSavedRecipes])
 
     return (
-        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate, findByIngredients }}>
+        <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate, findByIngredients, removeAccessToken, getAccessToken }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -25,7 +25,6 @@ const App = () => {
                         <Route path="/recipes/:id" exact component={Recipe} />
                         <Route path="/joinLogin" exact component={JoinLogin} />
                         <Route path="/myIngredients" exact component={MyIngredients} />
-                        {/* <Route path="/recipesICanMake" exact component={RecipesICanMake} /> */}
                     </Switch>
                 </RecipeProvider>
             </UserProvider>

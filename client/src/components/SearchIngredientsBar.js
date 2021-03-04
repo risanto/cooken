@@ -46,7 +46,9 @@ const SearchBar = (props) => {
         setSearchInput('')
         setCursor(0)
         setSuggestions([])
-    }, [searchInputFinal]) // add ingredient when the search input is final
+        // eslint-disable-next-line
+    }, [searchInputFinal])  
+    // add ingredient when the search input is final
 
     return (
         <div

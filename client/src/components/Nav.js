@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
 
 const Nav = (props) => {
-    const { isAuthenticated } = useContext(UserContext)
+    const { isAuthenticated, removeAccessToken } = useContext(UserContext)
 
-    let history = useHistory()
-
-    const redirectTo = (link) => {
-        history.push(link)
+    const logout = () => {
+        removeAccessToken()
+        window.location.reload()
     }
 
     const [isOpen, setIsOpen] = useState(false)
@@ -59,7 +58,7 @@ const Nav = (props) => {
                             className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                         >Saved recipes
                             </Link>
-                        <Link className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500">Log out</Link>
+                        <div onClick={logout} className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500">Log out</div>
                     </>
                 )}
                 {!isAuthenticated && (
