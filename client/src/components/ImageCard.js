@@ -5,6 +5,7 @@ import { toastDefault, toastError } from '../helpers/toast'
 import { Link } from 'react-router-dom'
 
 const ImageCard = (props) => {
+
     const { imageSrc, text, linkTo, extraClasses, recipeId } = props
     const { isAuthenticated, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes } = useContext(UserContext)
 

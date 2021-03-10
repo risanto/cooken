@@ -9,7 +9,7 @@ import SkeletonImageCardList from '../SkeletonImageCardList'
 
 const Home = (props) => {
     const { getRandomRecipes } = useContext(RecipeContext)
-    const { isAuthenticated } = useContext(UserContext)
+    const { isAuthenticated, user } = useContext(UserContext)
 
     const [randomRecipes, setRandomRecipes] = useState([])
 
@@ -42,7 +42,12 @@ const Home = (props) => {
                 )}
 
                 <section id="random-recipes">
+                    {!!isAuthenticated && (
+                    <p className="mt-4 text-center">Hello, {user.displayName}! Here are some recipes to inspire you.</p>
+                    )}
+                    {!isAuthenticated && (
                     <p className="mt-4 text-center">Some recipes to inspire you.</p>
+                    )}
                     <ImageCardList list={randomRecipes} />
                 </section>
 
