@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
 
 const Nav = (props) => {
     const { isAuthenticated, removeAccessToken } = useContext(UserContext)
+    const history = useHistory()
 
     const logout = () => {
         removeAccessToken()
+        history.push('/')
         window.location.reload()
     }
 
@@ -14,6 +16,13 @@ const Nav = (props) => {
 
     const toggleOpen = () => {
         isOpen ? setIsOpen(false) : setIsOpen(true)
+    }
+
+    const handleLink = e => {
+        // when clicking the link on the same page
+        if (window.location.href === (e.target.href || e.currentTarget.href)) {
+            toggleOpen()
+        }
     }
 
     if (isOpen) document.body.style.setProperty("overflow", "hidden")
@@ -35,41 +44,41 @@ const Nav = (props) => {
                 )}
             </nav>
             <aside
-                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white flex flex-col align-center " 
-                + (isOpen ? 'translate-x-0' : '-translate-x-full')
-            }
+                className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white flex flex-col align-center "
+                    + (isOpen ? 'translate-x-0' : '-translate-x-full')
+                }
             >
-                <Link to="/" className="inline-block mx-auto">
+                <Link to="/" onClick={handleLink} className="inline-block mx-auto">
                     <img
                         src="/cooken-logo.png" alt="cooken-logo" className="w-20 py-6 mx-auto border-b border-gray-200 cursor-pointer"
                     />
                 </Link>
-                <Link to="/"
+                <Link to="/" onClick={handleLink}
                     className="inline-block mx-auto mt-6 text-center cursor-pointer hover:text-red-500"
                 >Home</Link>
                 {isAuthenticated && (
                     <>
-                        <Link to='/myIngredients'
+                        <Link to='/myIngredients' onClick={handleLink}
                             className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                         >My ingredients
-                            </Link>
+                        </Link>
                         <Link
-                            to='/savedRecipes'
+                            to='/savedRecipes' onClick={handleLink}
                             className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                         >Saved recipes
-                            </Link>
+                        </Link>
                         <div onClick={logout} className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500">Log out</div>
                     </>
                 )}
                 {!isAuthenticated && (
-                    <Link to='/joinLogin'
+                    <Link to='/joinLogin' onClick={handleLink}
                         className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
                     >Join / log in</Link>
                 )}
             </aside>
             {isOpen && (
                 <div
-                    onClick={toggleOpen}
+                    onClick={toggleOpen} onClick={handleLink}
                     className="fixed inset-0 z-10 bg-black opacity-20"
                     tabIndex="0"
                 ></div>

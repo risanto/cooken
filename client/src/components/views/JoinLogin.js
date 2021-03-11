@@ -30,6 +30,7 @@ const JoinLogin = (props) => {
         login(loginEmail, loginPassword)
             .then(_ => {
                 props.history.push('/')
+                window.location.reload()
             })
             .catch(errMessages => {
                 setDismissAlert(false)
@@ -98,7 +99,7 @@ const JoinLogin = (props) => {
         >
             <Nav showLogo={true} />
 
-            <section className="relative flex flex-col w-full pb-10 bg-white sm-500:mt-5 sm-500:rounded-lg sm-500:shadow-md sm-500:w-2/3 lg:w-1/3 sm-500:mx-auto sm-500:top-16">
+            <section className="flex flex-col w-full pb-10 my-8 bg-white sm-500:rounded-lg sm-500:shadow-md sm-500:w-2/3 lg:w-1/3 sm-500:mx-auto">
                 <div className="flex justify-around">
                     {/* Join / log in */}
                     <h2

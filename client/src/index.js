@@ -8,6 +8,7 @@ function ReactApp() {
   return <App />
 }
 
-ReactDOM.render(<Router forceRefresh={true}>
+{/* <Router forceRefresh={true}></Router> */}
+ReactDOM.render(<Router>
   <ReactApp />
 </Router>, document.getElementById('root'))

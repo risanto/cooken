@@ -43,10 +43,10 @@ const Home = (props) => {
 
                 <section id="random-recipes">
                     {!!isAuthenticated && (
-                    <p className="mt-4 text-center">Hello, {user.displayName}! Here are some recipes to inspire you.</p>
+                        <p className="mt-4 text-center">Hello, <span className="font-bold text-red-500">{user.displayName}</span>! Here are some recipes to inspire you.</p>
                     )}
                     {!isAuthenticated && (
-                    <p className="mt-4 text-center">Some recipes to inspire you.</p>
+                        <p className="mt-4 text-center">Some recipes to inspire you.</p>
                     )}
                     <ImageCardList list={randomRecipes} />
                 </section>
