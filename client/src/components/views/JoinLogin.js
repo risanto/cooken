@@ -100,7 +100,7 @@ const JoinLogin = (props) => {
         >
             <Nav showLogo={true} />
 
-            <section className="flex flex-col w-full pb-10 my-8 bg-white sm-500:rounded-lg sm-500:shadow-md sm-500:w-2/3 lg:w-1/3 sm-500:mx-auto">
+            <section className="flex flex-col w-full pb-10 bg-white sm-500:my-8 sm-500:rounded-lg sm-500:shadow-md sm-500:w-2/3 lg:w-1/3 sm-500:mx-auto">
                 <div className="flex justify-around">
                     {/* Join / log in */}
                     <h2
