@@ -80,12 +80,14 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
 
             {/* Save recipe */}
             {isAuthenticated && !isSaved && (
+                <>
                 <img
                     alt="save recipe"
                     onClick={handleSaveRecipe}
                     className="absolute top-0 right-0 transform cursor-pointer no-flicker hover:-translate-y-1"
                     src="/save-icon.svg"
-                />
+                    />
+                </>
             )}
 
             {/* Remove recipe */}

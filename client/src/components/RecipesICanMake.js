@@ -12,7 +12,7 @@ const RecipesICanMake = (props) => {
                     className="py-8 bg-white rounded-lg lg:px-40 xl:px-80"
                     key={idx}
                 >
-                    <h2 className="font-bold text-center">Recipes that match {recipeGroup.usedIngredientCount} of your ingredient(s)</h2>
+                    <h2 className="mb-4 font-bold text-center">Recipes that match {recipeGroup.usedIngredientCount} of your ingredient(s)</h2>
                     <ImageCardList list={recipeGroup.recipes} />
                 </div>
             })}

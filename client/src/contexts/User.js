@@ -164,8 +164,10 @@ export const UserProvider = (props) => {
     }
 
     useEffect(() => {
-        authenticate()
-        fetchSavedRecipes()
+        if (getAccessToken()) {
+            authenticate()
+            fetchSavedRecipes()
+        }
     }, [authenticate, fetchSavedRecipes])
 
     return (

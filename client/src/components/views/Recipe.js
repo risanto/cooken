@@ -16,7 +16,6 @@ const Recipe = () => {
     useEffect(() => {
         getRecipeById(id)
             .then(recipeData => {
-                console.log(recipeData)
                 setRecipe(recipeData)
             })
     }, [getRecipeById, id])

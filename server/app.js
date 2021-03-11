@@ -23,5 +23,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, _ => {
-    console.log('listening to port', PORT)
+    console.log('Listening to port', PORT)
 })

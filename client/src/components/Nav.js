@@ -78,7 +78,7 @@ const Nav = (props) => {
             </aside>
             {isOpen && (
                 <div
-                    onClick={toggleOpen} onClick={handleLink}
+                    onClick={toggleOpen}
                     className="fixed inset-0 z-10 bg-black opacity-20"
                     tabIndex="0"
                 ></div>
