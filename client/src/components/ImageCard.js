@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { UserContext } from '../contexts/User'
 import { toastDefault, toastError } from '../helpers/toast'
 import { Link } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const ImageCard = (props) => {
 
@@ -69,7 +70,17 @@ const ImageCard = (props) => {
                     />
                 )}
 
-                <img className={"rounded-t-lg w-full"} src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'} alt={text.split(' ').join('-')} loading="lazy" />
+                {/* Without lazy loading */}
+                {/* <img className={"rounded-t-lg w-full"} src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'} alt={text.split(' ').join('-')} loading="lazy" /> */}
+
+                <LazyLoadImage
+                    alt={text.split(' ').join('-')}
+                    src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'}
+                    className={"rounded-t-lg w-full"}
+                    effect="opacity"
+                    width="556"
+                    height="370"
+                />
 
                 {/* VERSION 1 */}
                 {/* <p className="block px-4 py-2 text-sm text-center text-white truncate rounded-b-xl bg-gradient-to-r from-red-600 via-red-500 to-pink-500 sm-500:py-1">{text}</p> */}
