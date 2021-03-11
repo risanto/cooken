@@ -4,6 +4,7 @@ import { UserContext } from '../contexts/User'
 import { toastDefault, toastError } from '../helpers/toast'
 import { Link } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const ImageCard = (props) => {
 
@@ -48,7 +49,18 @@ const ImageCard = (props) => {
         <Link to={linkTo}
             className={"inline-block w-3/4 m-2 transform rounded-t-lg shadow cursor-pointer no-flicker hover:-translate-y-2 hover:shadow-xl md:m-4 rounded-b-xl sm-500:w-2/5 md:w-1/4 image-card " + extraClasses}
         >
-            <li className="">
+            <li>
+                {/* Without lazy loading */}
+                {/* <img className={"rounded-t-lg w-full"} src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'} alt={text.split(' ').join('-')}" /> */}
+
+                <LazyLoadImage
+                    alt={text.split(' ').join('-')}
+                    src={imageSrc ? imageSrc : '/chef-hat-icon-wide.png'}
+                    className={"rounded-t-lg w-full"}
+                    effect="blur"
+                    width="556"
+                    height="370"
+                />
 
                 {/* Save recipe */}
                 {isAuthenticated && !isSaved && (
@@ -69,18 +81,6 @@ const ImageCard = (props) => {
                         src="saved-icon.svg"
                     />
                 )}
-
-                {/* Without lazy loading */}
-                {/* <img className={"rounded-t-lg w-full"} src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'} alt={text.split(' ').join('-')} loading="lazy" /> */}
-
-                <LazyLoadImage
-                    alt={text.split(' ').join('-')}
-                    src={imageSrc ? imageSrc : 'chef-hat-icon-wide.png'}
-                    className={"rounded-t-lg w-full"}
-                    effect="opacity"
-                    width="556"
-                    height="370"
-                />
 
                 {/* VERSION 1 */}
                 {/* <p className="block px-4 py-2 text-sm text-center text-white truncate rounded-b-xl bg-gradient-to-r from-red-600 via-red-500 to-pink-500 sm-500:py-1">{text}</p> */}
