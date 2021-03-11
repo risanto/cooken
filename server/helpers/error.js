@@ -10,7 +10,7 @@ const handleError = (err, res) => {
     console.log('\n At handleError =>', err)
     let { statusCode, message, errors } = err
 
-    if(!statusCode || status) statusCode = 500
+    if(!statusCode) statusCode = 500
     let messages = []
 
     errors?.forEach(error => {
