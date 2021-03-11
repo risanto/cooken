@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
+import { useHistory } from 'react-router'
 import { RecipeContext } from '../contexts/Recipe'
 
 const SearchBar = (props) => {
@@ -9,10 +10,15 @@ const SearchBar = (props) => {
     const [suggestions, setSuggestions] = useState([])
     const [cursor, setCursor] = useState(0)
 
+    const history = useHistory()
+    
+    const redirectTo = useCallback((link) => {
+        history.push(link)
+    }, [history])
+    
     const handleChange = (e) => {
         setSearchInput(e.target.value)
     }
-
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if (cursor > 0) {
@@ -30,16 +36,20 @@ const SearchBar = (props) => {
     }
 
     useEffect(() => {
-        autocompleteIngredient(searchInput)
-            .then(result => {
-                result = result.map((obj) => {
-                    return obj.name
-                }).slice(0, 3)
-
-                setSuggestions(result)
-            })
-            .catch(err => console.log(err))
-    }, [searchInput, autocompleteIngredient]) // autocomplete based on current search input
+        if (searchInput) {
+            autocompleteIngredient(searchInput)
+                .then(result => {
+                    result = result.map((obj) => {
+                        return obj.name
+                    }).slice(0, 3)
+    
+                    setSuggestions(result)
+                })
+                .catch(err => {
+                    redirectTo(`/error/${err.message}`)
+                })
+        }
+    }, [searchInput, autocompleteIngredient, redirectTo]) // autocomplete based on current search input
 
     useEffect(() => {
         addIngredient(searchInputFinal)

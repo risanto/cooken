@@ -76,9 +76,11 @@ const MyIngredients = (props) => {
                     const grouped = groupRecipesBy(data, 'usedIngredientCount', 'desc', ingredients.length)
                     setRecipeGroups(grouped)
                 })
-                .catch(err => toastError(err))
+                .catch(err => {
+                    props.history.push('/error/' + err.message)
+                })
         }
-    }, [ingredients, showRecipesICanMake, findByIngredients])
+    }, [ingredients, showRecipesICanMake, findByIngredients, props.history])
 
     return (
         <div
