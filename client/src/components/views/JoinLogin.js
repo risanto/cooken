@@ -60,6 +60,7 @@ const JoinLogin = (props) => {
             })
             .then(_ => {
                 props.history.push('/')
+                window.location.reload()
             })
             .catch(errMessages => {
                 setDismissAlert(false)
