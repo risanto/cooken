@@ -52,7 +52,7 @@ export const UserProvider = (props) => {
         }
     }
 
-    const removeFromSavedRecipes = async (id) => {
+    const removeFromSavedRecipes = useCallback(async (id) => {
         try {
             const { data } = await axios({
                 method: 'delete',
@@ -65,7 +65,7 @@ export const UserProvider = (props) => {
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [])
 
     const saveRecipe = async (recipeId, imageSrc, title) => {
         try {
@@ -164,11 +164,17 @@ export const UserProvider = (props) => {
     }
 
     useEffect(() => {
-        if (getAccessToken()) {
-            authenticate()
-            fetchSavedRecipes()
+        let mounted = true
+
+        if (mounted) {
+            if (getAccessToken()) {
+                authenticate()
+                fetchSavedRecipes()
+            }
         }
-    }, [authenticate, fetchSavedRecipes])
+
+        return () => mounted = false
+    }, [authenticate, fetchSavedRecipes, removeFromSavedRecipes])
 
     return (
         <UserContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, register, saveRecipe, savedRecipes, fetchSavedRecipes, removeFromSavedRecipes, updateUserIngredients, authenticate, findByIngredients, removeAccessToken, getAccessToken }}>

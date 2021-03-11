@@ -37,19 +37,24 @@ const Home = (props) => {
 
                 {/* Random recipes */}
 
+                <section id="random-recipes">
+                    {!!isAuthenticated && (
+                        <>
+                            <p className="mt-4 text-center">Hello, <span className="font-bold text-red-500">{user.displayName}</span>! Here are some recipes to inspire you.</p>
+                        </>
+                    )}
+                    {!isAuthenticated && (
+                        <>
+                            <p className="mt-4 text-center">Some recipes to inspire you.</p>
+                        </>
+                    )}
+                    <ImageCardList list={randomRecipes} />
+                </section>
+                
                 {!randomRecipes.length && (
                     <SkeletonImageCardList />
                 )}
 
-                <section id="random-recipes">
-                    {!!isAuthenticated && (
-                        <p className="mt-4 text-center">Hello, <span className="font-bold text-red-500">{user.displayName}</span>! Here are some recipes to inspire you.</p>
-                    )}
-                    {!isAuthenticated && (
-                        <p className="mt-4 text-center">Some recipes to inspire you.</p>
-                    )}
-                    <ImageCardList list={randomRecipes} />
-                </section>
 
                 <section className="flex justify-center mt-4 align-center">
                     <button className="flex justify-center px-1 text-sm text-gray-500 border-2 focus:outline-none rounded-xl align-center hover:text-indigo-900 hover:border-indigo-200" onClick={generateNewRandomRecipes}>

@@ -20,7 +20,9 @@ const SavedRecipes = () => {
                 {!savedRecipes.length && (
                     <>
                         <p className="mt-4 mt-8 text-center">It looks like you haven't saved any recipes yet.</p>
-                        <img src='/empty-fridge.png' width="500" className="mt-8 place-self-center"/>
+                        <img
+                        alt="empty-fridge" 
+                        src='/empty-fridge.png' width="500" className="mt-8 place-self-center"/>
                     </>
                 )}
             </section>

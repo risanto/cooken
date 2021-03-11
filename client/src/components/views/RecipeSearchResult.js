@@ -60,7 +60,7 @@ const RecipeSearchResult = (props) => {
                         </svg>
                     </button>
 
-                    <p class="block place-self-center mx-5">
+                    <p className="block mx-5 place-self-center">
                         Page {page} of {totalPages}
                     </p>
 

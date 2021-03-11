@@ -78,7 +78,7 @@ const MyIngredients = (props) => {
                 })
                 .catch(err => toastError(err))
         }
-    }, [ingredients, showRecipesICanMake])
+    }, [ingredients, showRecipesICanMake, findByIngredients])
 
     return (
         <div
