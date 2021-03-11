@@ -21,7 +21,7 @@ const App = () => {
             <UserProvider>
                 <RecipeProvider>
                     <ScrollToTop>
-                        <Suspense fallback={<></>}>
+                        <Suspense fallback={<h1>Loading...</h1>}>
                             <Switch>
                                 <Route path="/error/:message" exact component={Error} />
                                 <Route path="/" exact component={Home} />
