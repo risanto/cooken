@@ -27,15 +27,12 @@ const JoinLogin = (props) => {
     }
 
     const handleLogin = () => {
-        console.log('ini errMessages', errorMessages)
-        
         login(loginEmail, loginPassword)
             .then(_ => {
                 props.history.push('/')
                 window.location.reload()
             })
             .catch(errMessages => {
-                console.log('err login', errMessages)
                 setDismissAlert(false)
                 setErrorMessages(errMessages?.slice(0, 1))
             })
