@@ -13,15 +13,20 @@ const Home = (props) => {
 
     const [randomRecipes, setRandomRecipes] = useState([])
 
+    const redirectTo = useCallback((link) => {
+        props.history.push(link)
+    }, [props])
+
     const generateNewRandomRecipes = useCallback(() => {
         setRandomRecipes([])
         getRandomRecipes()
-            .then(randomRecipes => setRandomRecipes(randomRecipes))
-    }, [setRandomRecipes, getRandomRecipes])
-
-    const redirectTo = (link) => {
-        props.history.push(link)
-    }
+            .then(randomRecipes => {
+                setRandomRecipes(randomRecipes)
+            })
+            .catch(err => {
+                redirectTo(`/error/${err.message}`)
+            })
+    }, [setRandomRecipes, getRandomRecipes, redirectTo])
 
     useEffect(() => {
         generateNewRandomRecipes()

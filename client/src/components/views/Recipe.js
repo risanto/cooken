@@ -6,6 +6,7 @@ import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
 import Nav from '../Nav'
 import SkeletonRecipe from '../SkeletonRecipe'
+import { toastError } from '../../helpers'
 
 const Recipe = () => {
     const { id } = useParams()
@@ -17,6 +18,9 @@ const Recipe = () => {
         getRecipeById(id)
             .then(recipeData => {
                 setRecipe(recipeData)
+            })
+            .catch(err => {
+                toastError(err)
             })
     }, [getRecipeById, id])
 

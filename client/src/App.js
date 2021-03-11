@@ -8,6 +8,8 @@ import RecipeSearchResult from './components/views/RecipeSearchResult'
 import JoinLogin from './components/views/JoinLogin'
 import MyIngredients from './components/views/MyIngredients'
 import SavedRecipes from './components/views/SavedRecipes'
+import Error from './components/views/Error'
+
 import ScrollToTop from './components/ScrollToTop'
 
 import { RecipeProvider } from './contexts/Recipe'
@@ -22,6 +24,7 @@ const App = () => {
                 <RecipeProvider>
                     <ScrollToTop>
                         <Switch>
+                            <Route path="/error/:message" exact component={Error} />
                             <Route path="/" exact component={Home} />
                             <Route path="/recipes/search/:page" exact component={RecipeSearchResult} />
                             <Route path="/recipes/:id" exact component={Recipe} />
