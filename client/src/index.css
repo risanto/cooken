@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 .vertical-mid-line {
     background: linear-gradient(#000, #000) no-repeat center/1px 100%;
 }
