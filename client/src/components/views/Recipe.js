@@ -26,10 +26,10 @@ const Recipe = () => {
 
     return (
         <>
-            <Nav showLogo={true}/>
-            {!recipe && <SkeletonRecipe/>}
+            <Nav showLogo={true} />
+            {!recipe && <SkeletonRecipe />}
             {!!recipe && (
-                <main className="mb-auto">
+                <main className="mt-12 mb-auto">
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat bg-indigo-10 h-80"></div>
@@ -55,6 +55,9 @@ const Recipe = () => {
                             extendedIngredients={recipe.extendedIngredients}
                             analyzedInstructions={recipe.analyzedInstructions}
                         />
+                            <a href={recipe.sourceUrl}
+                            target="_blank"
+                            className="block mt-10 ml-auto mr-6 text-sm text-right w-60 hover:text-red-500">Source: {recipe.creditsText}</a>
                     </div>
                 </main>
             )}

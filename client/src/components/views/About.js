@@ -6,7 +6,7 @@ const About = () => {
         <>
             <Nav showLogo={true} />
             <main
-                className="container flex flex-col justify-center pb-8 mb-auto align-center lg:px-32"
+                className="container flex flex-col justify-center pb-8 mt-12 mb-auto align-center lg:px-32"
             >
                 <img alt="chef celebration" src="/chef-celebration.png" className="sm-500:h-96 place-self-center" />
                 <div className="mt-4 w-80 sm-500:w-2/3 lg:w-1/2 place-self-center">

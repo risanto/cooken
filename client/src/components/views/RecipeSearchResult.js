@@ -36,7 +36,7 @@ const RecipeSearchResult = (props) => {
     return (recipes &&
         <>
             <Nav />
-            <main className="container flex flex-col justify-center pb-8 mb-auto align-center lg:px-32">
+            <main className="container flex flex-col justify-center pb-8 mt-12 mb-auto align-center lg:px-32">
                 <Header />
 
                 {!recipes.length && (

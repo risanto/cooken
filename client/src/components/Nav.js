@@ -29,8 +29,8 @@ const Nav = (props) => {
     else document.body.style.removeProperty("overflow")
 
     return (
-        <nav>
-            <header className="fixed sticky top-0 z-10 flex items-center h-12 gap-2 p-2 bg-white md:pl-4">
+        <nav className="fixed top-0 z-10 w-full bg-white">
+            <header className="flex items-center h-12 gap-2 p-2 md:pl-4">
                 <button
                     onClick={toggleOpen}
                 >

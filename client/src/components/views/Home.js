@@ -36,7 +36,7 @@ const Home = (props) => {
         <>
             <Nav />
             <main
-                className="container flex flex-col justify-center pb-16 mb-auto align-center lg:px-32"
+                className="container flex flex-col justify-center pb-16 mt-12 mb-auto align-center lg:px-32"
             >
                 <Header />
 
