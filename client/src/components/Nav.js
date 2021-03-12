@@ -30,16 +30,20 @@ const Nav = (props) => {
 
     return (
         <>
-            <nav className="fixed sticky top-0 z-10 flex gap-2 p-2 bg-white cursor-pointer md:pl-4">
-                <img
+            <nav className="fixed sticky top-0 z-10 flex items-center h-12 gap-2 p-2 bg-white md:pl-4">
+                <button
                     onClick={toggleOpen}
-                    src="/hamburger-menu-red.png" className="w-10 h-8" alt="menu"
-                />
+                >
+                    <img
+                        src="/hamburger-menu-red.png" className="w-10 h-8" alt="menu"
+                    />
+                </button>
 
                 {props.showLogo && (
                     <Link to="/">
                         <img
-                            src="/cooken-logo.png" alt="cooken-logo" className="w-16 h-8 cursor-pointer" />
+                            src="/cooken-logo.png" alt="cooken-logo" className="w-16 h-8"
+                        />
                     </Link>
                 )}
             </nav>

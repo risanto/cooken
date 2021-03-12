@@ -3,7 +3,7 @@ export const processError = (error) => {
     let message = error.response.data.messages[0]
 
     if (message.includes('402')) {
-        message = "Sorry for the inconvenience, I'm using Spoonacular's free plan and the daily points limit of 150 API calls has already been reached :("
+        message = "Sorry for the inconvenience, I'm using a free API to fetch the data and the daily limit of 150 points has already been reached :("
     }
 
     err.message = message

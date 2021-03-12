@@ -41,12 +41,12 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
     return (
         <section className="flex flex-wrap justify-center p-3 mt-2 text-sm flexContainer w-13/16 align-center">
             <span className="flex justify-center align-center">
-                <img src="../hourglass.png" className="inline-block w-4 mb-2 mr-2" alt="hourglass" />
+                <img src="../hourglass.png" className="inline-block w-4 h-5 mb-2 mr-2" alt="hourglass" />
                 <p className="inline-block mb-2 mr-3">{readyInMinutes} minutes </p>
             </span>
 
             <span className="flex justify-center align-center">
-                <img src="/serving.png" className="inline-block w-4 mb-2 mr-2" alt="serving" />
+                <img src="/serving.png" className="inline-block w-4 h-5 mb-2 mr-2" alt="serving" />
                 <p className="inline-block mb-2 mr-3">{servings} servings</p>
             </span>
 
@@ -84,7 +84,7 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
                 <img
                     alt="save recipe"
                     onClick={handleSaveRecipe}
-                    className="absolute top-0 right-0 transform cursor-pointer no-flicker hover:-translate-y-1"
+                    className="absolute top-0 right-0 w-12 h-12 transform cursor-pointer no-flicker hover:-translate-y-1"
                     src="/save-icon.svg"
                     />
                 </>
@@ -95,7 +95,7 @@ const RecipeInfo = ({ readyInMinutes, servings, vegetarian, vegan, glutenFree, d
                 <img
                     alt="remove recipe"
                     onClick={handleRemoveRecipe}
-                    className="absolute top-0 right-0 transform cursor-pointer no-flicker hover:-translate-y-1"
+                    className="absolute top-0 right-0 w-12 h-12 transform cursor-pointer no-flicker hover:-translate-y-1"
                     src="/saved-icon.svg"
                 />
             )}
