@@ -29,7 +29,7 @@ const Recipe = () => {
             <Nav showLogo={true}/>
             {!recipe && <SkeletonRecipe/>}
             {!!recipe && (
-                <main>
+                <main className="mb-auto">
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat bg-indigo-10 h-80"></div>

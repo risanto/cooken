@@ -96,7 +96,7 @@ const JoinLogin = (props) => {
     return (
         <main
             style={{ backgroundImage: "url('/chef-celebration.png')" }}
-            className="overflow-scroll h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative"
+            className="overflow-scroll h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative mb-auto"
         >
             <Nav showLogo={true} />
 

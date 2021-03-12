@@ -9,7 +9,7 @@ const SavedRecipes = () => {
     return (
         <>
             <Nav showLogo={true} />
-            <main className="container flex flex-col justify-center pb-16 align-center lg:px-32">
+            <main className="container flex flex-col justify-center pb-8 mb-auto align-center lg:px-32">
                 {!!savedRecipes.length && (
                     <>
                         <p className="mt-4 text-center">Your saved recipes.</p>

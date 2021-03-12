@@ -12,6 +12,7 @@ const RecipeSearchResult = lazy(() => import('./components/views/RecipeSearchRes
 const JoinLogin = lazy(() => import('./components/views/JoinLogin'))
 const MyIngredients = lazy(() => import('./components/views/MyIngredients'))
 const SavedRecipes = lazy(() => import('./components/views/SavedRecipes'))
+const About = lazy(() => import('./components/views/About'))
 const Error = lazy(() => import('./components/views/Error'))
 const Footer = lazy(() => import('./components/Footer'))
 
@@ -26,6 +27,7 @@ const App = () => {
                             <Switch>
                                 <Route path="/error/:message" exact component={Error} />
                                 <Route path="/" exact component={Home} />
+                                <Route path="/about" exact component={About} />
                                 <Route path="/recipes/search/:page" exact component={RecipeSearchResult} />
                                 <Route path="/recipes/:id" exact component={Recipe} />
                                 <Route path="/joinLogin" exact component={JoinLogin} />

@@ -60,6 +60,9 @@ const Nav = (props) => {
                 <Link to="/" onClick={handleLink}
                     className="inline-block mx-auto mt-6 text-center cursor-pointer hover:text-red-500"
                 >Home</Link>
+                <Link to="/about" onClick={handleLink}
+                    className="inline-block mx-auto mt-4 text-center cursor-pointer hover:text-red-500"
+                >About</Link>
                 {isAuthenticated && (
                     <>
                         <Link to='/myIngredients' onClick={handleLink}

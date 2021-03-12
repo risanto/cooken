@@ -45,7 +45,7 @@ const Home = (props) => {
                 <section id="random-recipes">
                     {!!isAuthenticated && (
                         <>
-                            <p className="mt-4 text-center">Hello, <span className="font-bold text-red-500">{user.displayName}</span>! Here are some recipes to inspire you.</p>
+                            <p className="w-64 mx-auto mt-4 text-center sm-500:w-5/6">Hello, <span className="font-bold text-red-500">{user.displayName}</span>! Here are some recipes to inspire you.</p>
                         </>
                     )}
                     {!isAuthenticated && (
