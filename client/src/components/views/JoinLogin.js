@@ -94,7 +94,7 @@ const JoinLogin = (props) => {
     const inactiveH2Classnames = "cursor-pointer flex-1 inline-block py-1 text-base text-center text-gray-500 border-b-2 bg-gray-50"
 
     return (
-        <div
+        <main
             style={{ backgroundImage: "url('/chef-celebration.png')" }}
             className="overflow-scroll h-screen bg-no-repeat bg-contain below-sm-500:bg-none bg-30% sm-500:bg-chef-celebration sm-500:bg-right sm-500:bg-indigo-10 relative"
         >
@@ -216,7 +216,7 @@ const JoinLogin = (props) => {
 
             </section>
 
-        </div>
+        </main>
     )
 }
 

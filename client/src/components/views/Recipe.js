@@ -28,8 +28,8 @@ const Recipe = () => {
         <>
             <Nav showLogo={true}/>
             {!recipe && <SkeletonRecipe/>}
-            {recipe && (
-                <>
+            {!!recipe && (
+                <main>
                     <div style={{
                         backgroundImage: `url(${recipe.image})`
                     }} className="bg-fixed bg-top bg-no-repeat bg-indigo-10 h-80"></div>
@@ -56,7 +56,7 @@ const Recipe = () => {
                             analyzedInstructions={recipe.analyzedInstructions}
                         />
                     </div>
-                </>
+                </main>
             )}
         </>
     )

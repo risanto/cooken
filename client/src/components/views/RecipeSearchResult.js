@@ -35,9 +35,9 @@ const RecipeSearchResult = (props) => {
 
     return (recipes &&
         <>
-            <Nav/>
-            <div className="container flex flex-col justify-center pb-16 align-center lg:px-32">
-            <Header />
+            <Nav />
+            <main className="container flex flex-col justify-center pb-8 align-center lg:px-32">
+                <Header />
 
                 {!recipes.length && (
                     <SkeletonImageCardList />
@@ -75,7 +75,7 @@ const RecipeSearchResult = (props) => {
                         </svg>
                     </button>
                 </div>
-            </div>
+            </main>
         </>
     )
 }

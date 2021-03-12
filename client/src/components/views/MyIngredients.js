@@ -83,7 +83,7 @@ const MyIngredients = (props) => {
     }, [ingredients, showRecipesICanMake, findByIngredients, props.history])
 
     return (
-        <div
+        <main
             style={{ backgroundImage: "url('/girl-open-fridge.png')" }}
             className="h-screen bg-bottom bg-no-repeat bg-contain bg-indigo-10 sm-500:bg-75% md:bg-30% md:bg-right"
         >
@@ -132,7 +132,7 @@ const MyIngredients = (props) => {
                 <RecipesICanMake
                     recipeGroups={recipeGroups} />
             )}
-        </div>
+        </main>
     )
 }
 

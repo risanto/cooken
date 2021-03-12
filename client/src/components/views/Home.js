@@ -35,8 +35,8 @@ const Home = (props) => {
     return (
         <>
             <Nav />
-            <div
-                className="container flex flex-col justify-center pb-16 align-center lg:px-32"
+            <main
+                className="container flex flex-col justify-center pb-16 mb-auto align-center lg:px-32"
             >
                 <Header />
 
@@ -91,7 +91,7 @@ const Home = (props) => {
                         </button>
                     )}
                 </section>
-            </div>
+            </main>
         </>
     )
 }

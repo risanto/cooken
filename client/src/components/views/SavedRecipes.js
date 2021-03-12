@@ -9,7 +9,7 @@ const SavedRecipes = () => {
     return (
         <>
             <Nav showLogo={true} />
-            <section className="container flex flex-col justify-center pb-16 align-center lg:px-32">
+            <main className="container flex flex-col justify-center pb-16 align-center lg:px-32">
                 {!!savedRecipes.length && (
                     <>
                         <p className="mt-4 text-center">Your saved recipes.</p>
@@ -25,7 +25,7 @@ const SavedRecipes = () => {
                         src='/empty-fridge.png' width="500" className="mt-8 place-self-center"/>
                     </>
                 )}
-            </section>
+            </main>
         </>
     )
 }

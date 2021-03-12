@@ -29,8 +29,8 @@ const Nav = (props) => {
     else document.body.style.removeProperty("overflow")
 
     return (
-        <>
-            <nav className="fixed sticky top-0 z-10 flex items-center h-12 gap-2 p-2 bg-white md:pl-4">
+        <nav>
+            <header className="fixed sticky top-0 z-10 flex items-center h-12 gap-2 p-2 bg-white md:pl-4">
                 <button
                     onClick={toggleOpen}
                 >
@@ -46,7 +46,7 @@ const Nav = (props) => {
                         />
                     </Link>
                 )}
-            </nav>
+            </header>
             <aside
                 className={"fixed top-0 left-0 z-30 w-64 h-full overflow-auto transition-all duration-300 ease-in-out transform bg-white flex flex-col align-center "
                     + (isOpen ? 'translate-x-0' : '-translate-x-full')
@@ -87,7 +87,7 @@ const Nav = (props) => {
                     tabIndex="0"
                 ></div>
             )}
-        </>
+        </nav>
     )
 }
 

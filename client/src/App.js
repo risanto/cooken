@@ -13,10 +13,11 @@ const JoinLogin = lazy(() => import('./components/views/JoinLogin'))
 const MyIngredients = lazy(() => import('./components/views/MyIngredients'))
 const SavedRecipes = lazy(() => import('./components/views/SavedRecipes'))
 const Error = lazy(() => import('./components/views/Error'))
+const Footer = lazy(() => import('./components/Footer'))
 
 const App = () => {
     return (
-        <>
+        <div className="flex flex-col h-screen">
             <ToastContainer />
             <UserProvider>
                 <RecipeProvider>
@@ -31,11 +32,12 @@ const App = () => {
                                 <Route path="/myIngredients" exact component={MyIngredients} />
                                 <Route path="/savedRecipes" exact component={SavedRecipes} />
                             </Switch>
+                            <Footer/>
                         </Suspense>
                     </ScrollToTop>
                 </RecipeProvider>
             </UserProvider>
-        </>
+        </div>
     )
 }
 
