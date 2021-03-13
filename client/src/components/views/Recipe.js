@@ -8,7 +8,7 @@ import Nav from '../Nav'
 import SkeletonRecipe from '../SkeletonRecipe'
 import { toastError } from '../../helpers'
 
-const Recipe = () => {
+const Recipe = (props) => {
     const { id } = useParams()
 
     const [recipe, setRecipe] = useState(null)
@@ -20,7 +20,7 @@ const Recipe = () => {
                 setRecipe(recipeData)
             })
             .catch(err => {
-                toastError(err)
+                props.history.push(`/error/${err.message}`)
             })
     }, [getRecipeById, id])
 

@@ -28,7 +28,7 @@ export const RecipeProvider = (props) => {
             return data
 
         } catch (error) {
-            throw error.response.data.messages
+            throw processError(error)
         }
     }
 
