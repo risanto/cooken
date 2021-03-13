@@ -29,9 +29,9 @@ const About = () => {
                     <div className="mt-10 text-sm text-right">
                         <p>Images used on this site are attributed to:</p>
                         <ul>
-                            <li><a target="_blank" href='https://pngtree.com/so/victory'>- <u>https://pngtree.com/so/victory</u></a></li>
-                            <li><a target="_blank"  href='https://pngtree.com/so/fridge-clipart'>- <u>https://pngtree.com/so/fridge-clipart</u></a></li>
-                            <li><a target="_blank"  href='https://pngtree.com/so/hunger'>- <u>https://pngtree.com/so/hunger</u></a></li>
+                            <li><a target="_blank" rel="noreferrer" href='https://pngtree.com/so/victory'>- <u>https://pngtree.com/so/victory</u></a></li>
+                            <li><a target="_blank"  rel="noreferrer" href='https://pngtree.com/so/fridge-clipart'>- <u>https://pngtree.com/so/fridge-clipart</u></a></li>
+                            <li><a target="_blank"  rel="noreferrer" href='https://pngtree.com/so/hunger'>- <u>https://pngtree.com/so/hunger</u></a></li>
                         </ul>
                     </div>
                 </div>

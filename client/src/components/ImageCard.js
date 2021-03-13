@@ -39,6 +39,8 @@ const ImageCard = (props) => {
 
     const [isSaved, setIsSaved] = useState(false)
 
+    const imgPlaceholder = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 370"%3E%3C/svg%3E`;
+
     useEffect(() => {
         if (savedRecipes.find(el => el.recipeId === recipeId)) {
             setIsSaved(true)
@@ -56,6 +58,7 @@ const ImageCard = (props) => {
                 <LazyLoadImage
                     alt={text.split(' ').join('-')}
                     src={imageSrc ? imageSrc : '/chef-hat-icon-wide.png'}
+                    placeholderSrc={imgPlaceholder}
                     className={"rounded-t-lg w-full"}
                     effect="blur"
                     width="556"

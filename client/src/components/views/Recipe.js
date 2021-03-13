@@ -56,6 +56,7 @@ const Recipe = () => {
                             analyzedInstructions={recipe.analyzedInstructions}
                         />
                             <a href={recipe.sourceUrl}
+                            rel="noreferrer"
                             target="_blank"
                             className="block mt-10 ml-auto mr-6 text-sm text-right w-60 hover:text-red-500">Source: {recipe.creditsText}</a>
                     </div>

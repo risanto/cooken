@@ -45,7 +45,7 @@ const RecipeIngredientsDirections = ({ extendedIngredients, analyzedInstructions
 
                     <div className="self-center sm-500:w-2/3">
                         {/* Directions list */}
-                        {!showIngredients && analyzedInstructions[0].steps.map((instruction, index) => {
+                        {!showIngredients && analyzedInstructions[0]?.steps?.map((instruction, index) => {
                             return (
                                 <span key={index} className="grid grid-cols-10 mx-5 mb-4">
                                     <p className="inline-block col-span-1 mr-2 font-bold text-red-500">
