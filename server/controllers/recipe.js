@@ -1,5 +1,6 @@
 const axios = require('axios')
 const apiKey = process.env.API_KEY
+const { redisClient } = require('../helpers')
 
 class RecipeController {
     static async getRandom(req, res, next) {
@@ -7,7 +8,9 @@ class RecipeController {
             const link = `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=${req.query.number ? req.query.number : 6}`
             console.log('GET', link)
 
-            const { data } = await axios.get(link);
+            const { data } = await axios.get(link)
+            redisClient.setex('randomRecipes', 86400, JSON.stringify(data))
+            
             res.send(data.recipes)
 
         } catch (error) {

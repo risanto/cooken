@@ -6,8 +6,8 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-const app = express()
 const PORT = process.env.PORT
+const app = express()
 const routes = require('./routes')
 
 const { handleError } = require('./helpers/error')

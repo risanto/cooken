@@ -7,8 +7,19 @@ class ErrorHandler extends Error {
 }
 
 const handleError = (err, res) => {
-    console.log('\n At handleError =>', err)
-    let { statusCode, message, errors } = err
+    let statusCode, message, errors
+
+    if (err.response?.data) {
+        console.log('\n At handleError =>', err.response.data)
+        err = err.response.data
+        statusCode = err.code
+        message = err.message
+    } else {
+        console.log('\n At handleError =>', err)
+        statusCode = err.statusCode
+        message = err.message
+        errors = err.errors
+    }
 
     if(!statusCode) statusCode = 500
     let messages = []
