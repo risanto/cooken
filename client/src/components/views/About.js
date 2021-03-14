@@ -8,7 +8,7 @@ const About = () => {
             <main
                 className="container flex flex-col justify-center pb-8 mt-12 mb-auto align-center lg:px-32"
             >
-                <img alt="chef celebration" src="/chef-celebration.png" className="sm-500:h-96 place-self-center" />
+                <img alt="chef celebration" src="/chef-celebration_686x686.png" className="sm-500:h-96 place-self-center" />
                 <div className="mt-4 w-80 sm-500:w-2/3 lg:w-2/5 place-self-center">
                     <p className="mb-2">
                         Cooken is a place where you can find recipes from all over the internet.

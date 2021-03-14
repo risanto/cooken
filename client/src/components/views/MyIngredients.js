@@ -85,7 +85,7 @@ const MyIngredients = (props) => {
 
     return (
         <main
-            style={{ backgroundImage: "url('/girl-open-fridge.png')" }}
+            style={{ backgroundImage: "url('/girl-open-fridge.png')", backgroundSize: "300px 300px" }}
             className={"mt-12 bg-bottom bg-no-repeat bg-contain bg-indigo-10 sm-500:bg-75% md:bg-30% md:bg-right mb-auto " + (showRecipesICanMake ? 'h-auto' : 'h-screen')}
         >
             <Nav showLogo={true} />

@@ -11,7 +11,7 @@ const Error = () => {
             <main
                 className="container flex flex-col justify-center pb-16 mt-12 mb-auto align-center lg:px-32"
             >
-                <img alt="hungry-man" src="/hungry.png" className="sm-500:h-80 place-self-center"/>
+                <img alt="hungry-man" src="/hungry_686x686.png" className="sm-500:h-80 place-self-center"/>
                 <p className="mt-4 w-80 sm-500:w-3/4 lg:w-2/3 place-self-center">{message}</p>
             </main>
         </>
