@@ -22,6 +22,7 @@ const Home = (props) => {
         getRandomRecipes()
             .then(randomRecipes => {
                 setRandomRecipes(randomRecipes)
+                window.scrollTo(0, 0)
             })
             .catch(err => {
                 redirectTo(`/error/${err.message}`)
