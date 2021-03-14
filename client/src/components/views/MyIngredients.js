@@ -11,7 +11,7 @@ const MyIngredients = (props) => {
     const [showRecipesICanMake, setShowRecipesICanMake] = useState(false)
     const [loadRecipesICanMake, setLoadRecipesICanMake] = useState(false)
     const [recipeGroups, setRecipeGroups] = useState([])
-    
+
     if (!getAccessToken()) {
         props.history.push('/')
     }
@@ -85,7 +85,7 @@ const MyIngredients = (props) => {
     return (
         <main
             style={{ backgroundImage: "url('/girl-open-fridge.png')" }}
-            className="mt-12 h-screen bg-bottom bg-no-repeat bg-contain bg-indigo-10 sm-500:bg-75% md:bg-30% md:bg-right mb-auto"
+            className={"mt-12 bg-bottom bg-no-repeat bg-contain bg-indigo-10 sm-500:bg-75% md:bg-30% md:bg-right mb-auto " + (showRecipesICanMake ? 'h-auto' : 'h-screen')}
         >
             <Nav showLogo={true} />
             <div
