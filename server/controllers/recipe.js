@@ -80,7 +80,7 @@ class RecipeController {
                 console.log('GET', link)
     
                 const { data } = await axios.get(link)
-                edisClient.setex(`recipes#${req.params.id}`, 86400, JSON.stringify(data))
+                redisClient.setex(`recipes#${req.params.id}`, 86400, JSON.stringify(data))
 
                 res.send(data)
             } else {
