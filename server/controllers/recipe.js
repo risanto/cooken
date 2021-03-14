@@ -10,14 +10,14 @@ const ingredientsCSV = fs.readFileSync(ingredientsPath, 'utf-8')
 class RecipeController {
     static async getDailyRandom(req, res, next) {
         try {
-            const cache = await redisClient.get('recipes:random:daily')
+            const cache = await redisClient.get('recipes:random')
 
             if (!cache) {
                 const link = `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=${req.query.number ? req.query.number : 6}`
                 console.log('GET', link)
 
                 const { data } = await axios.get(link)
-                redisClient.setex('recipes:random:daily', 86400, JSON.stringify(data.recipes))
+                redisClient.setex('recipes:random', 86400, JSON.stringify(data.recipes))
 
                 res.send(data.recipes)
             } else {
@@ -35,7 +35,7 @@ class RecipeController {
             console.log('GET', link)
 
             const { data } = await axios.get(link)
-            redisClient.setex('recipes:random:daily', 86400, JSON.stringify(data.recipes))
+            redisClient.setex('recipes:random', 86400, JSON.stringify(data.recipes))
 
             res.send(data.recipes)
 
