@@ -7,7 +7,15 @@ export const RecipeContext = createContext()
 
 export const RecipeProvider = (props) => {
 
-    // RANDOM RECIPES
+    const getDailyRandomRecipes = async () => {
+        try {
+            const { data } = await axios.get(`${host}/recipes/dailyRandom`)
+            return data
+
+        } catch (error) {
+            throw processError(error)
+        }
+    }
 
     const getRandomRecipes = async () => {
         try {
@@ -19,9 +27,6 @@ export const RecipeProvider = (props) => {
         }
     }
 
-
-    // RECIPES BY ID
-
     const getRecipeById = async (id) => {
         try {
             const { data } = await axios.get(`${host}/recipes/${id}`)
@@ -31,8 +36,6 @@ export const RecipeProvider = (props) => {
             throw processError(error)
         }
     }
-
-    // SEARCH RECIPES
 
     const searchRecipes = async (query, itemsPerPage, page) => {
         try {
@@ -51,8 +54,6 @@ export const RecipeProvider = (props) => {
         }
     }
 
-    // AUTOCOMPLETE INGREDIENT
-
     const autocompleteIngredient = async (query) => {
         try {
             let link = `${host}/recipes/autocompleteIngredient?q=${query}`
@@ -67,7 +68,7 @@ export const RecipeProvider = (props) => {
     }
 
     return (
-        <RecipeContext.Provider value={{ getRandomRecipes, getRecipeById, searchRecipes, autocompleteIngredient }}>
+        <RecipeContext.Provider value={{ getRandomRecipes, getRecipeById, searchRecipes, autocompleteIngredient, getDailyRandomRecipes }}>
             {props.children}
         </RecipeContext.Provider>
     )

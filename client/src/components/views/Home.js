@@ -8,7 +8,7 @@ import ImageCardList from '../ImageCardList'
 import SkeletonImageCardList from '../SkeletonImageCardList'
 
 const Home = (props) => {
-    const { getRandomRecipes } = useContext(RecipeContext)
+    const { getRandomRecipes, getDailyRandomRecipes } = useContext(RecipeContext)
     const { isAuthenticated, user } = useContext(UserContext)
 
     const [randomRecipes, setRandomRecipes] = useState([])
@@ -18,14 +18,25 @@ const Home = (props) => {
     }, [props])
 
     const generateNewRandomRecipes = useCallback(() => {
-        setRandomRecipes([])
-        getRandomRecipes()
-            .then(randomRecipes => {
-                setRandomRecipes(randomRecipes)
-            })
-            .catch(err => {
-                redirectTo(`/error/${err.message}`)
-            })
+        if (!randomRecipes.length) {
+            getDailyRandomRecipes()
+                .then(randomRecipes => {
+                    console.log('CALLED', randomRecipes)
+                    setRandomRecipes(randomRecipes)
+                })
+                .catch(err => {
+                    redirectTo(`/error/${err.message}`)
+                })
+        } else {
+            setRandomRecipes([])
+            getRandomRecipes()
+                .then(randomRecipes => {
+                    setRandomRecipes(randomRecipes)
+                })
+                .catch(err => {
+                    redirectTo(`/error/${err.message}`)
+                })
+        }
     }, [setRandomRecipes, getRandomRecipes, redirectTo])
 
     useEffect(() => {
@@ -55,7 +66,7 @@ const Home = (props) => {
                     )}
                     <ImageCardList list={randomRecipes} />
                 </section>
-                
+
                 {!randomRecipes.length && (
                     <SkeletonImageCardList />
                 )}
