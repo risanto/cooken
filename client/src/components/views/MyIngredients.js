@@ -69,6 +69,7 @@ const MyIngredients = (props) => {
     }, [ingredients, updateUserIngredients])
 
     useEffect(() => {
+        setRecipeGroups([])
         if (showRecipesICanMake) {
             setLoadRecipesICanMake(true)
             findByIngredients(ingredients)
