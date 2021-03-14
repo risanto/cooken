@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const RecipeController = require('../controllers/recipe')
 
+router.get('/dailyRandom', RecipeController.getDailyRandom)
 router.get('/random', RecipeController.getRandom)
 router.get('/search', RecipeController.search)
 router.get('/findByIngredients', RecipeController.findByIngredients)
