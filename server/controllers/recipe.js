@@ -35,6 +35,7 @@ class RecipeController {
             console.log('GET', link)
 
             const { data } = await axios.get(link)
+            redisClient.setex('recipes:random:daily', 86400, JSON.stringify(data.recipes))
 
             res.send(data.recipes)
 
