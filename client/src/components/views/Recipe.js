@@ -6,7 +6,6 @@ import RecipeInfo from '../RecipeInfo'
 import RecipeIngredientsDirections from '../RecipeIngredientsDirections'
 import Nav from '../Nav'
 import SkeletonRecipe from '../SkeletonRecipe'
-import { toastError } from '../../helpers'
 
 const Recipe = (props) => {
     const { id } = useParams()
@@ -22,7 +21,7 @@ const Recipe = (props) => {
             .catch(err => {
                 props.history.push(`/error/${err.message}`)
             })
-    }, [getRecipeById, id])
+    }, [getRecipeById, id, props.history])
 
     return (
         <>

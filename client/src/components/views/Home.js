@@ -18,30 +18,25 @@ const Home = (props) => {
     }, [props])
 
     const generateNewRandomRecipes = useCallback(() => {
-        if (!randomRecipes.length) {
-            getDailyRandomRecipes()
-                .then(randomRecipes => {
-                    console.log('CALLED', randomRecipes)
-                    setRandomRecipes(randomRecipes)
-                })
-                .catch(err => {
-                    redirectTo(`/error/${err.message}`)
-                })
-        } else {
-            setRandomRecipes([])
-            getRandomRecipes()
-                .then(randomRecipes => {
-                    setRandomRecipes(randomRecipes)
-                })
-                .catch(err => {
-                    redirectTo(`/error/${err.message}`)
-                })
-        }
+        setRandomRecipes([])
+        getRandomRecipes()
+            .then(randomRecipes => {
+                setRandomRecipes(randomRecipes)
+            })
+            .catch(err => {
+                redirectTo(`/error/${err.message}`)
+            })
     }, [setRandomRecipes, getRandomRecipes, redirectTo])
 
     useEffect(() => {
-        generateNewRandomRecipes()
-    }, [generateNewRandomRecipes])
+        getDailyRandomRecipes()
+            .then(randomRecipes => {
+                setRandomRecipes(randomRecipes)
+            })
+            .catch(err => {
+                redirectTo(`/error/${err.message}`)
+            })
+    }, [getDailyRandomRecipes, redirectTo])
 
     return (
         <>
