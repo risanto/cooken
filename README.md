@@ -14,14 +14,14 @@ The app is currently hosted at https://cooken.netlify.app
 
 ### Frontend
 
-• React
+React
 • React Context API
 • React Router DOM
 • TailwindCSS
 
 ### Backend
 
-• Node.js
+Node.js
 • Express
 • PostgreSQL
 • Sequelize
