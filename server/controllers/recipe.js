@@ -98,7 +98,7 @@ class RecipeController {
             const ingredients = ingredientsCSV.split('\n').reduce((filtered, ingredient) => {
                 ingredient = ingredient.split(';')[0]
 
-                if (ingredient.includes(req.query.q)) {
+                if (ingredient.toLowerCase().includes(req.query.q.toLowerCase())) {
                     filtered.push({ name: ingredient })
                 }
                 return filtered
