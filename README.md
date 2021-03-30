@@ -1,4 +1,8 @@
-# Cooken | 🚀 Hosted at https://cooken.netlify.app
+# Cooken 
+
+🚀 Hosted at https://cooken.netlify.app
+
+## Description
 
 Cooken is a place where you can find recipes from all over the internet.
 
