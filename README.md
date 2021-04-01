@@ -1,6 +1,8 @@
 # Cooken 
 
-🚀 Hosted at https://cooken.netlify.app (note: please be patient, it might take a long time to load since I'm using a free Heroku server to serve the API)
+🚀 Hosted at https://cooken.netlify.app
+
+###### note: please be patient, it might take a long time to load since I'm using a free Heroku server to serve the API)
 
 ## Description
 
