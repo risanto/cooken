@@ -6,6 +6,8 @@
 
 ## Description
 
+![Cooken GIF](https://imgur.com/a/89HY6S9)
+
 Cooken is a place where you can find recipes from all over the internet.
 
 • Don't know what to cook? We'll recommend you some random recipes.
