@@ -6,7 +6,7 @@
 
 ## Description
 
-![Cooken GIF](https://s4.gifyu.com/images/cooken.gif)
+[Link to GIF](https://s4.gifyu.com/images/cooken.gif)
 
 Cooken is a place where you can find recipes from all over the internet.
 
